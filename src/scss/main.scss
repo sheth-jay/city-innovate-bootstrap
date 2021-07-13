@@ -1,5 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+// 7-1 Sass Architecture
+// https://sass-guidelin.es/#the-7-1-pattern
 
+// Abstracts
+// - tools and helpers
+@import "./abstracts/functions";
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+
+// Vendors
+// - CSS from external libraries and frameworks
+@import "./vendors/googlefonts";
+@import "./vendors/bootstrap";
+
+// Base
+// - standard styles for commonly elements
+@import "./base/base";
+@import "./base/helpers";
+@import "./base/fonts";
+@import "./base/typography";
+
+// Components
+// - for small, reusable pieces
+@import "./components/buttons";
+
+// Layout
+// - everything that takes part in laying out the site/application
+@import "./layout/header";
+@import "./layout/footer";
+
+// Pages
+// - page-specific styles
+@import "./pages/home";
+
+// Themes
+// - for different aspects
+@import "./themes/default";
+
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("./themes/fontawesome.min.css");
 html,
 body {
   margin: 0;
@@ -87,7 +126,7 @@ span.searchSvg {
 }
 .form-control:focus {
   border-color: #ccc;
-  box-shadow: 0 0 0 1px rgb(108 117 125 / 20%);
+  box-shadow: 0 0 0 1px rgba(108, 117, 125 ,0.2);
 }
 .filter-wrap {
   margin-left: 14px;
@@ -162,7 +201,7 @@ span.PlusIcon {
   background: #ffffff;
   border: 1px solid #ebebf0;
   box-sizing: border-box;
-  box-shadow: 0px 7px 20px rgb(0 0 0 / 10%);
+  box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.1);
   border-radius: 11px;
   padding: 0;
 }
@@ -433,7 +472,7 @@ li.checkbox-item.li-checked .count {
   background: #ffffff;
   border: 1px solid #ebebf0;
   box-sizing: border-box;
-  box-shadow: 0px 0px 40px rgb(0 0 0 / 10%);
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   height: 100vh;
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
@@ -494,7 +533,7 @@ li.checkbox-item.li-checked .count {
   color: #495057;
   /* background-color: #fff; */
   border-color: #dee2e6 #dee2e6 #fff;
-  background: rgb(0 100 255 / 6%);
+  background: rgba(0, 100, 255, 0.6);
   border-color: transparent;
   color: #0864ff;
 }
