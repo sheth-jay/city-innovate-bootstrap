@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Inter', sans-serif;
+	background-color: #E5E5E5;
+}
+.content-area {
+	max-width: 1391px;
+	margin: 0 auto;
+}
+.task-list-table thead th {
+	color: #636C72;
+	
+}
+.task-list-table tbody {
+	background-color: #FFFFFF;
+	border: 1px solid #EBEBF0;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03);
+	border-radius: 11px;
+}

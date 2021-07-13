@@ -8,250 +8,169 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="./CSS/all.min.css">
     <link href="./CSS/bootstrap.min.css" rel="stylesheet" type="text/css" >
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./CSS/style.css">
 
     <title>Tasks List</title>
   </head>
   <body>
     <div class="main">
-        <header>
-            <div class="top-header">
-                <div class="content-area">
-                    <div class="logo">
-                        <img src="Images/logo.svg" alt="logo">
-                    </div>
-                    <h1>Task Management</h1>
-                    <div class="user-profile-wrap">
-                        <a href="javascript:void(0);"><img src="Images/usericon1.svg" alt="usericon1"></a>
-                        <select>
-                            <option>Logout</option>
-                        </select>
-                    </div>
-                </div>
+      <header>
+        <div class="top-header">
+          <div class="content-area">
+            <div class="logo">
+              <img src="Images/logo.svg" alt="logo">
             </div>
-            <div class="bottom-header">
-                <div class="content-area">
-                    <div class="searc-input">
-                        <input type="text" name="" placeholder="Search tasks...">
-                    </div>
-                    <div class="filter-wrap">
-                        <select>
-                            <option>Solicitation</option>
-                            <option>Solicitation</option>
-                            <option>Solicitation</option>
-                        </select>
-                        <select>
-                            <option>Category</option>
-                            <option>Category</option>
-                            <option>Category</option>
-                        </select>
-                        <select>
-                            <option>Document</option>
-                            <option>Document</option>
-                            <option>Document</option>
-                        </select>
-                        <select>
-                            <option>Assigned to</option>
-                            <option>Assigned to</option>
-                            <option>Assigned to</option>
-                        </select>
-                        <select>
-                            <option>This Week</option>
-                            <option>This Week</option>
-                            <option>This Week</option>
-                        </select>
-                        <div class="clearall"><a href="">Clear all</a></div>
-                    </div>
-                    <div class="create-task-wrap">
-                        <button>Create Task</button>
-                    </div>
-                </div>
+            <h1>Task Management</h1>
+            <div class="user-profile-wrap">
+              <a href="javascript:void(0);"><img src="Images/usericon1.svg" alt="usericon1"></a>
+              <select>
+                <option>Logout</option>
+              </select>
             </div>
-        </header>
-        <div class="task-list-table">
-            <div class="content-area">
-                <table class="table">
-                    <thead class="table-light">
-                        <th><input type="checkbox"/></th>
-                        <th>Task name</th>
-                        <th>Document</th>
-                        <th>Section</th>
-                        <th>Labels</th>
-                        <th>Assigned to</th>
-                        <th>Due Date</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="7">
-                                <select>
-                                    <option>Recently Assigned</option>
-                                    <option>Recently Assigned</option>
-                                    <option>Recently Assigned</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Complete this section <span class="new-tag">NEW</span> <a href="javascript:void(0)">See Details <i class="fas fa-chevron-right"></i></a></td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Today</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>There are several issues with the naming...</td>
-                            <td>SF Solicitation</td>
-                            <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Today</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Ensure the documents are in the right format..</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Complete this section</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">7.2 Technical Information</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Liquidated damages will be removed</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Liquidated damages will be removed</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Several issues with the specifications from...</td>
-                            <td>Discovery Solici...</td>
-                            <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Oct 12</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Complete this section</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">7.2 Technical Information</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td colspan="7">
-                                <select>
-                                    <option>Recently Assigned</option>
-                                    <option>Recently Assigned</option>
-                                    <option>Recently Assigned</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Complete this section</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Today</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>There are several issues with the naming...</td>
-                            <td>SF Solicitation</td>
-                            <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Today</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Ensure the documents are in the right format..</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Complete this section</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">7.2 Technical Information</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Liquidated damages will be removed</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Liquidated damages will be removed</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Several issues with the specifications from...</td>
-                            <td>Discovery Solici...</td>
-                            <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Oct 12</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>Complete this section</td>
-                            <td>CDT STP FO</td>
-                            <td><span class="tag blue">7.2 Technical Information</span></td>
-                            <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                            <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                            <td class="date green">Dec 22</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+          </div>
         </div>
+        <div class="bottom-header">
+          <div class="content-area">
+            <div class="searc-input">
+                <input type="text" name="" placeholder="Search tasks...">
+            </div>
+            <div class="filter-wrap">
+              <select>
+                <option>Solicitation</option>
+                <option>Solicitation</option>
+                <option>Solicitation</option>
+              </select>
+              <select>
+                <option>Category</option>
+                <option>Category</option>
+                <option>Category</option>
+              </select>
+              <select>
+                <option>Document</option>
+                <option>Document</option>
+                <option>Document</option>
+              </select>
+              <select>
+                <option>Assigned to</option>
+                <option>Assigned to</option>
+                <option>Assigned to</option>
+              </select>
+              <select>
+                <option>This Week</option>
+                <option>This Week</option>
+                <option>This Week</option>
+              </select>
+              <div class="clearall"><a href="">Clear all</a></div>
+            </div>
+            <div class="create-task-wrap">
+              <button>Create Task</button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="task-list-table">
+        <div class="content-area">
+          <table class="table">
+            <thead class="table-light">
+              <th><input type="checkbox"/></th>
+              <th>Task name</th>
+              <th>Document</th>
+              <th>Section</th>
+              <th>Labels</th>
+              <th>Assigned to</th>
+              <th>Due Date</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7">
+                        <select class="form-select">
+                            <option>Upcoming</option>
+                            <option>Upcoming</option>
+                            <option>Upcoming</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Complete this section</td>
+                    <td>CDT STP FO</td>
+                    <td><span class="tag blue">4.1 Informational Attatchments</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Today</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>There are several issues with the naming...</td>
+                    <td>SF Solicitation</td>
+                    <td><span class="tag blue">2.0 Legal Assesment</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Today</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Ensure the documents are in the right format..</td>
+                    <td>CDT STP FO</td>
+                    <td><span class="tag blue">4.1 Informational Attatchments</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Dec 22</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Complete this section</td>
+                    <td>CDT STP FO</td>
+                    <td><span class="tag blue">7.2 Technical Information</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Dec 22</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Liquidated damages will be removed</td>
+                    <td>CDT STP FO</td>
+                    <td><span class="tag blue">2.0 Legal Assesment</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Dec 22</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Liquidated damages will be removed</td>
+                    <td>CDT STP FO</td>
+                    <td><span class="tag blue">2.0 Legal Assesment</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Dec 22</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Several issues with the specifications from...</td>
+                    <td>Discovery Solici...</td>
+                    <td><span class="tag blue">4.1 Informational Attatchments</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Oct 12</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td>Complete this section</td>
+                    <td>CDT STP FO</td>
+                    <td><span class="tag blue">7.2 Technical Information</span></td>
+                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
+                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
+                    <td class="date green">Dec 22</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./JS/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="./JS/theme.js" type="text/javascript"></script>
 
   </body>
