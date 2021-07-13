@@ -594,7 +594,31 @@
                   </ul>
                 </div>
                 <div class="create-task-wrap">
-                  <button class="btn theme-btn" type="button">
+                  <button class="btn theme-btn" type="button" id="drawerOpener">
+                    <span class="PlusIcon">
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5.99916H11"
+                          stroke="currentcolor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M6.00014 10.8936V1.10547"
+                          stroke="currentcolor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
                     Create Task
                   </button>
                 </div>
@@ -609,7 +633,7 @@
             <thead class="table-light">
               <th>
                 <label class="input-checkbox">
-                  <input type="checkbox"/>
+                  <input type="checkbox" />
                   <span class="custom-checkbox"></span>
                 </label>
               </th>
@@ -621,85 +645,358 @@
               <th>Due Date</th>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="7">
-                        <div class="dropdown">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton7" data-bs-toggle="dropdown" aria-expanded="false">
-                            Upcoming
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
-                            <li><a class="dropdown-item" href="#">Upcoming</a></li>
-                            <li><a class="dropdown-item" href="#">Upcoming</a></li>
-                            <li><a class="dropdown-item" href="#">Upcoming</a></li>
-                          </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>Complete this section <span class="new tag">New</span><a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>CDT STP FO</td>
-                    <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date green">Today</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>There are several issues with the naming... <a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>SF Solicitation</td>
-                    <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date green">Today</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>Ensure the documents are in the right format.. <a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>CDT STP FO</td>
-                    <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date">Dec 22</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>Complete this section <a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>CDT STP FO</td>
-                    <td><span class="tag blue">7.2 Technical Information</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date">Dec 22</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>Liquidated damages will be removed <a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>CDT STP FO</td>
-                    <td><span class="tag blue">2.0 Legal Assesment</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date">Dec 22</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>Several issues with the specifications from... <a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>Discovery Solici...</td>
-                    <td><span class="tag blue">4.1 Informational Attatchments</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date red">Oct 12</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"/></td>
-                    <td>Complete this section <a href="javascript:void(0);" class="see-detail-link">See Details <img src="./Images/arrow.png" alt="arrow"></a></td>
-                    <td>CDT STP FO</td>
-                    <td><span class="tag blue">7.2 Technical Information</span></td>
-                    <td><span class="tag">ADA</span> <span class="tag">Legal</span></td>
-                    <td class="user-images"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"><img src="./Images/assignee1.png"></td>
-                    <td class="date">Dec 22</td>
-                </tr>
+              <tr>
+                <td colspan="7">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton7"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Upcoming
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton7"
+                    >
+                      <li><a class="dropdown-item" href="#">Upcoming</a></li>
+                      <li><a class="dropdown-item" href="#">Upcoming</a></li>
+                      <li><a class="dropdown-item" href="#">Upcoming</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  Complete this section <span class="new tag">New</span
+                  ><a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>CDT STP FO</td>
+                <td>
+                  <span class="tag blue">4.1 Informational Attatchments</span>
+                </td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date green">Today</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  There are several issues with the naming...
+                  <a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>SF Solicitation</td>
+                <td><span class="tag blue">2.0 Legal Assesment</span></td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date green">Today</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  Ensure the documents are in the right format..
+                  <a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>CDT STP FO</td>
+                <td>
+                  <span class="tag blue">4.1 Informational Attatchments</span>
+                </td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date">Dec 22</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  Complete this section
+                  <a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>CDT STP FO</td>
+                <td><span class="tag blue">7.2 Technical Information</span></td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date">Dec 22</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  Liquidated damages will be removed
+                  <a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>CDT STP FO</td>
+                <td><span class="tag blue">2.0 Legal Assesment</span></td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date">Dec 22</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  Several issues with the specifications from...
+                  <a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>Discovery Solici...</td>
+                <td>
+                  <span class="tag blue">4.1 Informational Attatchments</span>
+                </td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date red">Oct 12</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                  Complete this section
+                  <a href="javascript:void(0);" class="see-detail-link"
+                    >See Details <img src="./Images/arrow.png" alt="arrow"
+                  /></a>
+                </td>
+                <td>CDT STP FO</td>
+                <td><span class="tag blue">7.2 Technical Information</span></td>
+                <td>
+                  <span class="tag">ADA</span> <span class="tag">Legal</span>
+                </td>
+                <td class="user-images">
+                  <img src="./Images/assignee1.png" /><img
+                    src="./Images/assignee1.png"
+                  /><img src="./Images/assignee1.png" />
+                </td>
+                <td class="date">Dec 22</td>
+              </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+    <div class="see-detail-drawer">
+      <div class="drawer_header">
+        <label class="headerCheck"
+          ><input type="checkbox" /><span>Mark as Complete</span></label
+        >
+        <div class="right_header_wrap">
+          <a href=""><img src="./Images/Attachment.png" /></a>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton7"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img src="./Images/Union.png" alt="Union" />
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
+              <li><a class="dropdown-item" href="#">Archive</a></li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  >Allow Guest Contributors to edit</a
+                >
+              </li>
+            </ul>
+          </div>
+          <button class="close-drawer btn">
+            <img src="./Images/drawer-close.png" alt="drawer-close" />
+          </button>
+        </div>
+      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Solicitation</a></li>
+          <li class="breadcrumb-item active" aria-current="page">CDT STP FO</li>
+        </ol>
+      </nav>
+      <h2>There are several issues with the naming of sections</h2>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            id="home-tab"
+            data-toggle="tab"
+            href="#home"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            >Overview <img src="./Images/overview.svg"
+          /></a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            id="profile-tab"
+            data-toggle="tab"
+            href="#profile"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+            >Activity <img src="./Images/activity.svg"
+          /></a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <div class="overview-info-wrap">
+            <div class="info">
+              <span class="overview-label">Assignee</span>
+              <div class="info-data">
+                <div class="assignee-info">
+                  <div class="delete-opt">
+                    <div class="userImg">
+                      <img src="./Images/assignee1.png" alt="assignee1" />
+                    </div>
+                    <span>Mark Ford</span>
+                    <a href="" class="crossIcon">
+                      <img src="./Images/circle-close.svg" />
+                    </a>
+                  </div>
+                  <div class="add-tag">
+                    <div class="delete-opt selectedTag">
+                      <div class="userImg">
+                        <img src="./Images/assignee1.png" alt="assignee1" />
+                      </div>
+                      <span>Mark Ford</span>
+                      <a href="" class="crossIcon">
+                        <img src="./Images/circle-close.svg" />
+                      </a>
+                    </div>
+                    <a href="" class="add-icon"
+                      ><img src="./Images/add-icon.svg" alt="add-icon"
+                    /></a>
+                  </div>
+                  <div class="delete-opt">
+                    <div class="userImg">
+                      <img src="./Images/assignee1.png" alt="assignee1" />
+                    </div>
+                    <span>Mark Ford</span>
+                    <a href="" class="crossIcon">
+                      <img src="./Images/circle-close.svg" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="info">
+              <span class="overview-label">Due date</span>
+              <div class="dueDateClass">
+                <img src="./Images/Calender.svg" /> Today
+              </div>
+            </div>
+            <div class="info">
+              <span class="overview-label">Labels</span>
+              <div class="info-data">
+                <span class="tags">Legal</span>
+                <span class="tags">ADA</span>
+              </div>
+            </div>
+            <div class="info">
+              <span class="overview-label">Section</span>
+              <div class="info-data">
+                <span class="section-tags">2.0 Legal Assesment</span>
+              </div>
+            </div>
+            <div class="info">
+              <span class="overview-label">Document</span>
+              <div class="info-data">
+                <span class="doc-text">CDT STP FO</span>
+              </div>
+            </div>
+            <div class="info">
+              <span class="overview-label">Status</span>
+              <div class="info-data">
+                <span class="status">In Progress</span>
+              </div>
+            </div>
+            <div class="info infotext">
+              <span class="overview-label">Description</span>
+              <div class="info-desc">
+                <p>
+                  Below are the details we have for EDR2 Independent
+                  Verification & Validation (IV&V) and Quality Assurance (QA).
+                  You'll also find options for updating these details or
+                  removing EDR2 Independent Verification & Validation (IV&V) and
+                  Quality Assurance (QA) from California Department of State
+                  Hospitals - CDT (IT) Templates entirely.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="profile"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        ></div>
+      </div>
+      <div class="drawer-footer">
+        <div class="profile-info">
+          <div class="profile-info-img">
+            <img src="./Images/list-avtar.png" />
+          </div>
+
+          <div class="profileText">
+            <h2>Jordy Alba created this task <span>9:45 AM Today</span></h2>
+          </div>
+        </div>
+        <div class="task-update-info">
+          <p>Mark Ford updated this task, 10:22 AM Tue, 22</p>
+          <p>Mark Ford commented, 9:45 AM Today</p>
+          <p>Task Assigned, 9:45 AM Today</p>
         </div>
       </div>
     </div>
