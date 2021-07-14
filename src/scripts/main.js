@@ -4,3 +4,4 @@ import "./vendor/bootstrap";
 import "./vendor/fontawesome";
 import "./modules/login";
 import "./vendor/theme";
+import "./modules/task";

@@ -126,7 +126,7 @@ span.searchSvg {
 }
 .form-control:focus {
   border-color: #ccc;
-  box-shadow: 0 0 0 1px rgb(108 117 125 / 20%);
+  // box-shadow: 0 0 0 1px rgb(108 117 125 / 20%);
 }
 .filter-wrap {
   margin-left: 14px;
@@ -201,7 +201,7 @@ span.PlusIcon {
   background: #ffffff;
   border: 1px solid #ebebf0;
   box-sizing: border-box;
-  box-shadow: 0px 7px 20px rgb(0 0 0 / 10%);
+  // box-shadow: 0px 7px 20px rgb(0 0 0 / 10%);
   border-radius: 11px;
   padding: 0;
 }
@@ -472,7 +472,7 @@ li.checkbox-item.li-checked .count {
   background: #ffffff;
   border: 1px solid #ebebf0;
   box-sizing: border-box;
-  box-shadow: 0px 0px 40px rgb(0 0 0 / 10%);
+  // box-shadow: 0px 0px 40px rgb(0 0 0 / 10%);
   height: 100vh;
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
@@ -533,7 +533,7 @@ li.checkbox-item.li-checked .count {
   color: #495057;
   /* background-color: #fff; */
   border-color: #dee2e6 #dee2e6 #fff;
-  background: rgb(0 100 255 / 6%);
+  // background: rgb(0 100 255 / 6%);
   border-color: transparent;
   color: #0864ff;
 }
