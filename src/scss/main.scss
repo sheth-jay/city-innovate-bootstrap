@@ -93,6 +93,12 @@ header {
   padding-left: 20px;
   .dropdown {
     width: 37px;
+    .dropdown-menu {
+      left: auto !important;
+      right: 0;
+      top: 40px !important;
+      transform: none !important;
+    }
   }
   .dropdown-toggle {
     background: transparent !important;
@@ -322,6 +328,7 @@ li.checkbox-item.li-checked {
 .checkbox-profile {
   display: flex;
   align-items: center;
+  margin-left: 8px;
 }
 .profile-img {
   display: inline-block;
@@ -420,22 +427,6 @@ li.checkbox-item.li-checked {
     border-collapse: collapse;
     overflow: hidden;
     tr:not(:first-child) {
-      position: relative;
-      // &::before {
-      //   position: absolute;
-      //   top: 0;
-      //   left: 10px;
-      //   width: calc(100% - 20px);
-      //   height: 100%;
-      //   border-radius: 11px;
-      //   background-color: #f5f7f9;
-      //   z-index: -1;
-      //   content: "";
-      //   td {
-      //     position: relative;
-      //     z-index: 1;
-      //   }
-      // }
       &:hover {
         background-color: #f5f7f9;
       }
@@ -446,7 +437,7 @@ li.checkbox-item.li-checked {
       background-color: transparent;
       font-size: 14px;
       color: #636c72;
-      padding: 15px 15px;
+      padding: 14px;
       font-weight: 400;
       border: none;
       &:first-child {
@@ -496,7 +487,7 @@ li.checkbox-item.li-checked {
       vertical-align: middle;
       font-size: 16px;
       color: #173851;
-      padding: 10px 15px;
+      padding: 10px 14px;
       .see-detail-link {
         color: #636c72;
         font-size: 12px;
@@ -554,6 +545,9 @@ li.checkbox-item.li-checked {
     td.user-images {
       padding: 0;
       img {
+        height: 25px;
+        width: 25px;
+        border-radius: 100%;
         margin: 0 2px;
       }
     }
@@ -576,7 +570,7 @@ li.checkbox-item.li-checked {
   right: 0;
   width: 445px;
   margin-right: -445px;
-  padding: 20px;
+  padding: 20px 0 0;
   background: #ffffff;
   border: 1px solid #ebebf0;
   box-sizing: border-box;
@@ -612,13 +606,15 @@ li.checkbox-item.li-checked {
   .nav-tabs {
     .nav-item {
       padding-right: 10px;
-
       .nav-link {
         color: #495057;
         border-color: transparent;
         border-radius: 4px;
         transition: 0.5s ease-in-out;
         padding: 4px 12px;
+        svg * {
+          stroke: #495057;
+        }
       }
     }
     .nav-link.active {
@@ -627,10 +623,16 @@ li.checkbox-item.li-checked {
       border-color: transparent;
       color: #0864ff;
       border-radius: 4px;
+      svg * {
+        stroke: #0864ff;
+      }
     }
     .nav-link:hover {
       color: #0864ff;
       border-radius: 4px;
+      svg * {
+        stroke: #0864ff;
+      }
     }
     border-bottom: 1px solid #dee2e6;
     padding-bottom: 20px;
@@ -691,17 +693,15 @@ li.checkbox-item.li-checked {
   }
 }
 .headerCheck {
-  position: relative;
   display: flex;
+  padding: 7px 10px;
+  border: 1.5px solid rgba(28, 181, 89, 0.5);
+  border-radius: 4px;
   > .btnSpan {
     color: #16b355;
     line-height: 18px;
     font-size: 15px;
     font-weight: 500;
-    padding: 7px 10px;
-    border: 1.5px solid #dce1e6;
-    box-sizing: border-box;
-    border-radius: 4px;
     display: flex;
     align-items: center;
     transition: 0.2s ease-in-out;
@@ -720,8 +720,23 @@ li.checkbox-item.li-checked {
     opacity: 0;
     cursor: pointer;
   }
-  input:checked + .btnSpan {
-    border-color: #16b355;
+  input:checked + .input-check {
+    width: 14px;
+    height: 14px;
+    background-image: url("./../images/green-check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    vertical-align: top;
+    background-size: 12px auto;
+  }
+  .input-wrap {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border: 1.5px solid rgba(28, 181, 89, 0.5);
+    border-radius: 4px;
   }
 }
 .close-drawer {
@@ -771,7 +786,7 @@ li.checkbox-item.li-checked {
 }
 .selectedTag {
   background: #f5f7f9;
-  border-radius: 50px;
+  border-radius: 4px;
 }
 .crossIcon {
   line-height: normal;
@@ -783,9 +798,24 @@ li.checkbox-item.li-checked {
   display: flex;
 }
 .add-icon {
+  display: inline-block;
   position: relative;
   top: 3px;
   right: -9px;
+  .dropdown-toggle {
+    padding: 0;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    &:focus,
+    &:active,
+    &:active:focus,
+    &.active,
+    &:hover {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
 }
 .dueDateClass {
   color: #16b255;
@@ -835,6 +865,7 @@ span.status {
   }
 }
 .drawer-footer {
+  margin-top: 50px;
   background: #f5f7f9;
   padding: 20px;
 }
@@ -888,7 +919,7 @@ span.status {
   }
 }
 .DrawerTop {
-  padding: 20px 20px 0 20px;
+  padding: 0 25px;
 }
 .drawer-center {
   .nav-tabs {
@@ -896,7 +927,7 @@ span.status {
     margin-bottom: 20px;
   }
   .tab-content {
-    padding: 0 20px;
+    padding: 0 25px;
   }
 }
 .activity-dropdown {
@@ -930,6 +961,7 @@ span.status {
         font-weight: 400;
         margin: 0;
         max-width: calc(100% - 40px);
+        color: #173851;
         &:first-child {
           padding-right: 20px;
         }
@@ -946,6 +978,25 @@ span.status {
         font-size: 12px;
         line-height: 20px;
         color: #a3aeb8;
+      }
+    }
+    .highlitedText {
+      .highlight {
+        color: #636c72;
+        font-size: 12px;
+      }
+      p {
+        position: relative;
+        color: #000;
+        padding-left: 12px;
+        &::before {
+          position: absolute;
+          left: 0;
+          height: 20px;
+          width: 2px;
+          background-color: #dce1e6;
+          content: "";
+        }
       }
     }
     .profile-info-img {
@@ -994,6 +1045,52 @@ span.status {
 .profileText {
   width: calc(100% - 30px);
 }
+// checkbox
+.customChek-container {
+  position: relative;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    margin: 0;
+  }
+  .customChek {
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border: 2px solid #dce1e6;
+    box-sizing: border-box;
+    border-radius: 3px;
+    display: flex;
+    transition: 0.5s ease-in-out;
+    align-items: center;
+    justify-content: center;
+    svg {
+      opacity: 0;
+    }
+  }
+  input:checked + .customChek {
+    background-color: #0064ff;
+    border-color: #0064ff;
+    svg {
+      opacity: 1;
+    }
+  }
+}
+.form-check {
+  padding-left: 0;
+  .form-check-label {
+    padding-left: 10px;
+  }
+}
+// checkbox-end
 @media (max-width: 1024px) {
   .filter-box {
     flex-direction: column;
@@ -1025,17 +1122,7 @@ span.status {
       }
     }
   }
-  .see-detail-drawer {
-    width: 300px;
-    margin-right: -300px;
-  }
-  .drawer-closed {
-    margin-right: 0;
-  }
-  .see-detail-drawer h2 {
-    font-size: 15px;
-    line-height: 20px;
-  }
+
   .overview-label {
     min-width: 76px;
   }
@@ -1062,5 +1149,66 @@ span.status {
 @media (max-width: 425px) {
   .searc-input {
     width: 100%;
+  }
+  .see-detail-drawer {
+    width: 300px;
+    margin-right: -300px;
+  }
+  .drawer-closed {
+    margin-right: 0;
+  }
+  .see-detail-drawer h2 {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+// Create Task Drawer
+.create-task-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 445px;
+  margin-right: -445px;
+  padding: 20px 25px;
+  background: #ffffff;
+  border: 1px solid #ebebf0;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  overflow-y: auto;
+  transition: all 0.5s ease-in-out;
+  z-index: 2;
+  &.drawer-closed {
+    margin-right: 0;
+  }
+  .close-task-drawer {
+    float: right;
+  }
+  .create-task-form {
+    display: inline-block;
+    width: 100%;
+    .form-item {
+      margin-bottom: 20px;
+      label {
+        color: #173851;
+        font-size: 14px;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        border: 1.5px solid #ebebf0;
+        padding: 5px 10px;
+        height: 40px;
+        border-radius: 4px;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+      textarea {
+        height: 100px;
+      }
+    }
   }
 }
