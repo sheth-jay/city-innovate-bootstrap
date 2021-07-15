@@ -1,7 +1,26 @@
 import Api from "../../utils/axios";
 import { getFormattedDateAndClass } from "../../utils/index";
 import moment from "moment";
+import Quill from "quill";
+var toolbarOptions = [
+  ["bold", "italic", "underline", "strike"], // toggled buttons
+  ["blockquote", "code-block"],
 
+  [{ header: 1 }, { header: 2 }], // custom button values
+  [{ list: "ordered" }, { list: "bullet" }],
+  [{ script: "sub" }, { script: "super" }], // superscript/subscript
+  [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+  [{ direction: "rtl" }], // text direction
+
+  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  [{ font: [] }],
+  [{ align: [] }],
+
+  ["clean"], // remove formatting button
+];
 let initFilter = {
   solicitation: [],
   labels: [],
@@ -24,7 +43,8 @@ let sortable = {
 };
 
 let paginationData = {};
-
+var editor;
+let taskDetails;
 $(document).ready(function () {
   $("#solicitationButton").click(filterClick);
   $("#labelButton").click(filterClick);
@@ -34,14 +54,34 @@ $(document).ready(function () {
   $("#sort_title").click(sortTable);
   $("#sort_labels").click(sortTable);
   $("#sort_assigness").click(sortTable);
+  $("#doComment").click(doComment);
 
   getSolicitationList();
   getLabels();
   getUsers();
   getTasks();
   getDocuments();
+  editor = new Quill("#editor", {
+    modules: { toolbar: toolbarOptions },
+    theme: "snow",
+  });
+  return editor;
 });
-
+function doComment() {
+  debugger; // eslint-disable-line no-debugger
+  var html = editor.root.innerHTML;
+  Api.post(`/tasks/${taskDetails.id}/comments`, {
+    comment: { comment: html },
+  })
+    .then(function () {
+      getTaskDetails(taskDetails.id);
+      editor.setContents([{ insert: "\n" }]);
+    })
+    .catch(function (error) {
+      throw error;
+    });
+  return html;
+}
 function constructPagination(paginationData) {
   $("#initPagination").nextAll().remove();
   let paginationArr = [];
@@ -169,6 +209,7 @@ function getTaskDetails(id) {
   Api.get(`/tasks/${id}`)
     .then(function (response) {
       $("#drawerTitle").text(response.data.title);
+      taskDetails = response.data;
       let assigneeHtml = "";
       for (let i = 0; i < response.data.assignees.length; i++) {
         let firstDiv =
@@ -660,7 +701,7 @@ function filterClick() {
         constructLabels.push(labData.name);
       }
     });
-    url2 = `&labels=${JSON.stringify(constructLabels)}`;
+    url2 = `&label=${JSON.stringify(constructLabels)}`;
   }
   if (initFilter.assignedTo.length > 0) {
     let constructAssigned = [];
