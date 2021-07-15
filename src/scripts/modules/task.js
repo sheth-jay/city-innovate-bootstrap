@@ -21,6 +21,8 @@ let sortable = {
   sort_labels: "asc",
 };
 
+let paginationData = {};
+
 $(document).ready(function () {
   $("#solicitationButton").click(filterClick);
   $("#labelButton").click(filterClick);
@@ -38,11 +40,56 @@ $(document).ready(function () {
   getDocuments();
 });
 
-function getTasks(taskurl = "") {
-  Api.get(`/tasks?page=1${taskurl}`)
+function constructPagination(paginationData) {
+  $("#initPagination").nextAll().remove();
+  let paginationArr = [];
+  for (
+    let i = paginationData.current_page;
+    i <= paginationData.current_page + 2 && i <= paginationData.total_pages;
+    i++
+  ) {
+    paginationArr.push(i);
+  }
+  if (paginationArr.length < 3) {
+    for (let i = 1; i < 3; i++) {
+      if (paginationArr.length < 3) {
+        paginationArr.unshift(paginationArr[0] - 1);
+      }
+    }
+  }
+  paginationArr.reverse();
+  for (let i = 0; i < paginationArr.length; i++) {
+    $("#initPagination").after(
+      `<li class="page-item ${
+        paginationData.current_page === paginationArr[i] ? "active" : ""
+      }"><a class="page-link" href="#" id="page_${paginationArr[i]}">${
+        paginationArr[i]
+      }</a></li>`
+    );
+
+    document
+      .getElementById(`page_${paginationArr[i]}`)
+      .addEventListener("click", changePagination);
+  }
+  $(`#paginationId`).append(
+    `<li class="page-item"><a class="page-link" href="#">Next</a></li>`
+  );
+}
+function changePagination(event) {
+  getTasks("", event.target.id.split("_")[1]);
+  return;
+}
+
+function getTasks(taskurl = "", page = 1) {
+  $("#page-loader").show();
+  Api.get(`/tasks?page=${page}${taskurl}`)
     .then(function (response) {
+      paginationData = response.meta_key;
       response.data.reverse();
       $("#initTable").nextAll().remove();
+      $("#page-loader").hide();
+      constructPagination(paginationData);
+
       for (let i = 0; i < response.data.length; i++) {
         let images = "";
         for (let j = 0; j < response.data[i].assignees.length; j++) {
@@ -83,7 +130,9 @@ function getTasks(taskurl = "") {
           </span>
         </span></td>
         <td>
-        <span class="table-desc">${response.data[i].title}</span> <span class="new tag">New</span
+        <span class="table-desc">${
+          response.data[i].title
+        }</span> <span class="new tag">New</span
           ><a href="javascript:void(0);" class="see-detail-link" id="${
             response.data[i].id
           }"
@@ -114,6 +163,7 @@ function getTasks(taskurl = "") {
 }
 
 function getTaskDetails(id) {
+  $("#page-loader").show();
   Api.get(`/tasks/${id}`)
     .then(function (response) {
       console.log("response.data", response.data);
@@ -206,7 +256,7 @@ function getTaskDetails(id) {
         </div>
       </div>`
             : ``;
-        debugger; // eslint-disable-line no-debugger
+
         assigneeHtml =
           assigneeHtml +
           `${firstDiv}<div class="delete-opt">
@@ -239,6 +289,7 @@ function getTaskDetails(id) {
       $("#drawerStatus").text(
         response.data?.status === "incompleted" ? "In Progress" : "Completed"
       );
+      $("#page-loader").hide();
     })
 
     .catch(function () {})
