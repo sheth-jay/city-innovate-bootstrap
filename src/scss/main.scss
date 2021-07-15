@@ -105,6 +105,11 @@ header {
     border: transparent;
     padding: 0;
     box-shadow: none !important;
+    img {
+      height: 37px;
+      width: 37px;
+      border-radius: 100%;
+    }
   }
 }
 .filter-box {
@@ -400,6 +405,7 @@ li.checkbox-item.li-checked {
   }
 }
 .tasklist-table-wrap {
+  position: relative;
   @media (max-width: 1300px) {
     overflow: auto;
   }
@@ -421,7 +427,7 @@ li.checkbox-item.li-checked {
   }
   tbody {
     background-color: #ffffff;
-    border: 1px solid #ebebf0;
+    // border: 1px solid #ebebf0;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03);
     border-radius: 11px;
     border-collapse: collapse;
@@ -1180,11 +1186,16 @@ span.status {
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
   z-index: 2;
+  @media (max-width: 450px) {
+    width: 300px;
+    padding: 20px;
+  }
   &.drawer-closed {
     margin-right: 0;
   }
   .close-task-drawer {
     float: right;
+    padding: 0;
     &:focus {
       box-shadow: none;
     }
@@ -1235,6 +1246,8 @@ span.status {
         textarea {
           height: 20px;
           margin-top: 0;
+          border: none;
+          padding: 0;
         }
         .select2-selection__choice__remove {
           border-right: 1px solid #fff;
@@ -1420,3 +1433,62 @@ span.status {
   }
 }
 //login end
+
+.selected-task-popover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  max-width: 400px;
+  width: 100%;
+  display: inline-flex;
+  padding: 14px 0 14px 20px;
+  background-color: #173851;
+  box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 480px) {
+    padding: 6px;
+  }
+  > span {
+    min-width: 120px;
+    font-size: 14px;
+    line-height: 17px;
+    color: $white;
+    @media (max-width: 480px) {
+      min-width: 100px;
+      font-size: 12px;
+    }
+  }
+  .action-wrap {
+    span {
+      vertical-align: middle;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    opacity: 0.5;
+    color: #fff;
+    padding: 0;
+    line-height: 1;
+    height: auto;
+    vertical-align: middle;
+    margin: 0 11px;
+    @media (max-width: 480px) {
+      margin: 0;
+    }
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      opacity: 1;
+    }
+    &.close-btn {
+      opacity: 1;
+    }
+  }
+}
