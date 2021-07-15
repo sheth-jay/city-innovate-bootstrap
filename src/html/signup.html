@@ -12,9 +12,8 @@
     <div class="d-flex flex-column h-100">
       <main class="">
         <div class="content-area">
-        <div class="login-container">
-         
-              <form>
+          <div class="login-container">
+              <form id="signupForm">
                 <div class="login-form signup-from">
                   <div class="login-header">
                     <h2>Sign up</h2>
@@ -22,7 +21,7 @@
                   <div class="signup-Profile">
                     <div class="profile-container">
                       <div class="lprofile-img">
-                        <img src="../images/list-avtar.png" alt="avtar"/>
+                        <img src="../images/list-avtar.png" id="avatar" alt="avatar"/>
                       </div>
                       <a href="" class="editicon">
                         <svg
@@ -47,24 +46,24 @@
                             </g>
                           </g>
                         </svg>
-                        <input type="file" />
+                        <input type="file"  id="upload_avatar"/>
                       </a>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input placeholder="First Name" name="fname" type="text" class="form-control"/>
+                    <input placeholder="First Name" name="fname" type="text" required class="form-control" id="first_name"/>
                   </div>
                   <div class="form-group">
-                    <input placeholder="Last Name" name="lname" type="text" class="form-control"/>
+                    <input placeholder="Last Name" name="lname" type="text" required class="form-control" id="last_name"/>
                   </div>
                   <div class="form-group">
-                    <input placeholder="Email Address" name="email" type="email" class="form-control"/>
+                    <input placeholder="Email Address" name="email" type="email" required class="form-control" id="email"/>
                   </div>
                   <div class="form-group">
-                    <input placeholder="Password"   type="password" name=""   required class="form-control"/>
+                    <input placeholder="Password" type="password" name="password" required class="form-control" id="password"/>
                   </div>
                   <div class="form-group">
-                    <input placeholder="Confirm Password"   type="password" name=""   required class="form-control"/>
+                    <input placeholder="Confirm Password" type="password" name="cpassword" required class="form-control" id="confirm_password"/>
                   </div>
                  
                   <div class="form-group">

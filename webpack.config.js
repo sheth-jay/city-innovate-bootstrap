@@ -131,6 +131,12 @@ module.exports = {
       hash: true,
     }),
     new HtmlWebpackPlugin({
+      template: "./src/html/signup.html",
+      filename: "signup.html",
+      minify: false, // Disable minification during production mode
+      hash: true,
+    }),
+    new HtmlWebpackPlugin({
       template: "./src/html/404.html",
       filename: "404.html",
       minify: false, // Disable minification during production mode

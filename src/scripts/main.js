@@ -6,3 +6,4 @@ import "./modules/login";
 import "./vendor/theme";
 import "select2";
 import "./modules/task";
+import "./modules/signup";
