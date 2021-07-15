@@ -1185,6 +1185,9 @@ span.status {
   }
   .close-task-drawer {
     float: right;
+    &:focus {
+      box-shadow: none;
+    }
   }
   .create-task-form {
     display: inline-block;
@@ -1203,6 +1206,7 @@ span.status {
         padding: 5px 10px;
         height: 40px;
         border-radius: 4px;
+        color: #173851;
         &:focus-visible {
           outline: none;
         }
@@ -1210,19 +1214,209 @@ span.status {
       textarea {
         height: 100px;
       }
+      .select2 {
+        width: 100% !important;
+      }
+      .select2-selection {
+        width: 100%;
+        border: 1.5px solid #ebebf0;
+        padding: 5px 10px;
+        min-height: 40px;
+        border-radius: 4px;
+        color: #173851;
+        .select2-selection__rendered {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .select2-selection__arrow {
+          height: 40px;
+          right: 5px;
+        }
+        textarea {
+          height: 20px;
+          margin-top: 0;
+        }
+        .select2-selection__choice__remove {
+          border-right: 1px solid #fff;
+          color: #fff;
+          &:hover,
+          &:focus {
+            background-color: #0864ff;
+          }
+        }
+        .select2-selection__choice {
+          margin-top: 0;
+          background-color: #0864ff;
+          border: 1px solid #0864ff;
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+    }
+    .btn {
+      background-color: #0064ff;
+      color: #fff;
+      margin-right: 10px;
+      &:hover {
+        background-color: transparent;
+        border: 1px solid #0064ff;
+        color: #0064ff;
+      }
+    }
+    .btn-cancel {
+      background-color: transparent;
+      border: 1px solid #0064ff;
+      color: #0064ff;
+      &:hover {
+        background-color: #0064ff;
+        color: #fff;
+      }
     }
   }
 }
 
 // Pagination Design
-.Page.navigation {
-  .pagination {
-    justify-content: flex-end;
-    li {
+.pagination {
+  justify-content: flex-end;
+  li {
+    a,
+    span {
+      font-size: 16px;
+      color: #173851;
+      &:focus {
+        box-shadow: none;
+      }
+      &:hover {
+        background-color: #0064ff;
+        color: #fff;
+      }
+    }
+    &.active {
       a {
-        font-size: 16px;
-        color: #173851;
+        background-color: #0064ff;
+        color: #fff;
       }
     }
   }
 }
+
+//login
+.login-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 51px);
+  justify-content: center;
+  padding: 40px 0;
+  form {
+    @media (max-width: 425px) {
+      width: 100%;
+    }
+  }
+  .login-form {
+    background: #fff;
+    padding: 30px;
+    width: 410px;
+    border-radius: 4px;
+    border: 1px solid #fafafa;
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.05);
+    @media (max-width: 767px) {
+      padding: 20px;
+    }
+    @media (max-width: 425px) {
+      width: 100%;
+    }
+
+    h2 {
+      color: #173851;
+      font-weight: 600;
+      font-size: 28px;
+      margin-bottom: 20px;
+      @media (max-width: 767px) {
+        font-size: 20px;
+      }
+    }
+
+    .form-control {
+      &:focus,
+      &:hover {
+        border-color: #173851;
+      }
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .theme-btn {
+      width: 100%;
+      justify-content: center;
+      height: 40px;
+    }
+    .loginlink {
+      display: inline-block;
+      font-size: 14px;
+      text-align: center;
+      width: 100%;
+      color: #173851;
+      a {
+        color: #0064ff;
+      }
+      span {
+        display: block;
+        font-size: 16px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+.login-footer {
+  text-align: center;
+}
+.profile-container {
+  position: relative;
+  width: 100px;
+  .lprofile-img {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .editicon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #0064ff;
+    position: absolute;
+    bottom: 7px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    svg {
+      width: 15px;
+      height: 17px;
+    }
+    input {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}
+.signup-from {
+  h2 {
+    text-align: center;
+  }
+}
+//login end

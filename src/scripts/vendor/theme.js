@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
 
 
   $('.multi-select').select2({
-    maximumSelectionLength: 5
+    tags: true,
   });
   
 });

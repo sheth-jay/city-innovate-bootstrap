@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML Starter</title>
+    <meta name="description" content="" />
+    <%= require('html-loader!./partials/head.html') %>
+  </head>
+  
+  <body>
+    <%= require('html-loader!./partials/browserupgrade.html') %>
+    <div class="d-flex flex-column h-100">
+      <main class="">
+        <div class="content-area">
+        <div class="login-container">
+         
+              <form>
+                <div class="login-form signup-from">
+                  <div class="login-header">
+                    <h2>Sign up</h2>
+                  </div>
+                  <div class="signup-Profile">
+                    <div class="profile-container">
+                      <div class="lprofile-img">
+                        <img src="../images/list-avtar.png" alt="avtar"/>
+                      </div>
+                      <a href="" class="editicon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <g>
+                            <g>
+                              <g>
+                                <g>
+                                  <g>
+                                    <path
+                                      d="M15.55 4c.524 0 1.026.21 1.393.579l2.48 2.48c.37.37.578.87.578 1.393s-.208 1.023-.577 1.393l-9.058 9.054c-.559.645-1.35 1.041-2.258 1.103H4v-.8l.003-3.372c.068-.843.46-1.628 1.058-2.155l9.096-9.095c.368-.371.87-.58 1.393-.58zm-3.309 4.755L6.157 14.84c-.324.287-.525.688-.557 1.055v2.508l2.451.001c.428-.03.826-.229 1.145-.594l6.049-6.051-3.004-3.004zm3.31-3.155c-.098 0-.191.039-.26.108l-1.918 1.916 3.003 3.004 1.916-1.915c.07-.069.108-.163.108-.26 0-.099-.038-.193-.108-.262L15.81 5.708c-.068-.07-.162-.108-.259-.108z"
+                                      transform="translate(-902 -501) translate(110 253) translate(660 248) translate(132)"
+                                    />
+                                  </g>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                        <input type="file" />
+                      </a>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="First Name" name="fname" type="text" class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="Last Name" name="lname" type="text" class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="Email Address" name="email" type="email" class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="Password"   type="password" name=""   required class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="Confirm Password"   type="password" name=""   required class="form-control"/>
+                  </div>
+                 
+                  <div class="form-group">
+                   
+                    <button type="submit" class="btn theme-btn mt-2">Register Now</button>
+                  </div>
+                  <div class="loginlink">
+                    Already have an account? <a href="./login.html">Login</a>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="login-footer">
+        <%= require('html-loader!./partials/footer.html') %>
+      </div>
+    </div>
+  </body>
+</html>
