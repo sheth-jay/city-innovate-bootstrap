@@ -697,6 +697,7 @@ li.checkbox-item.li-checked {
   padding: 7px 10px;
   border: 1.5px solid rgba(28, 181, 89, 0.5);
   border-radius: 4px;
+  margin-bottom: 0;
   > .btnSpan {
     color: #16b355;
     line-height: 18px;
@@ -1208,6 +1209,19 @@ span.status {
       }
       textarea {
         height: 100px;
+      }
+    }
+  }
+}
+
+// Pagination Design
+.Page.navigation {
+  .pagination {
+    justify-content: flex-end;
+    li {
+      a {
+        font-size: 16px;
+        color: #173851;
       }
     }
   }
