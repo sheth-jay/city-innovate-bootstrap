@@ -12,32 +12,29 @@
     <div class="d-flex flex-column h-100">
       <main class="">
         <div class="content-area">
-        <div class="login-container">
-         
-              <form>
-                <div class="login-form">
-                  <div class="login-header">
-                    <h2>Login</h2>
-                  </div>
-                  <div class="form-group">
-                    <input placeholder="Email Address" id="Email" name="Email" type="Email" class="form-control"/>
-                  </div>
-                  <div class="form-group">
-                    <input placeholder="Password"   type="password" name="email"   required class="form-control"/>
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn theme-btn mt-2">Submit</button>
-                  </div>
-                  <div class="loginlink">
-                    <span>Or</span>
-                    Don't have account ? <a href="./signup.html">Sign Up</a>
-                  </div>
-              </form>
-            </div>
+          <div class="login-container">
+            <form id="loginForm">
+              <div class="login-form">
+                <div class="login-header">
+                  <h2>Login</h2>
+                </div>
+                <div class="form-group">
+                  <input placeholder="Email Address" id="email" name="Email" type="Email" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                  <input placeholder="Password" id="password" type="password" name="password" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn theme-btn mt-2">Submit</button>
+                </div>
+                <div class="loginlink">
+                  <span>Or</span>
+                  Don't have account ? <a href="./signup.html">Sign Up</a>
+                </div>
+            </form>
           </div>
         </div>
       </main>
-
       <div class="login-footer">
         <%= require('html-loader!./partials/footer.html') %>
       </div>
