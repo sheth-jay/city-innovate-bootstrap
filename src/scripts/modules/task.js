@@ -83,7 +83,7 @@ function getTasks(taskurl = "") {
           </span>
         </span></td>
         <td>
-        ${response.data[i].title} <span class="new tag">New</span
+        <span class="table-desc">${response.data[i].title}</span> <span class="new tag">New</span
           ><a href="javascript:void(0);" class="see-detail-link" id="${
             response.data[i].id
           }"
