@@ -57,23 +57,48 @@ function getTasks(taskurl = "") {
             `<span class="tag">${response.data[i].labels[j].name}</span>`;
         }
         let date = getFormattedDateAndClass(response.data[i].due_date);
-        $("#initTable").after(`<tr id = "row1">
-        <td><input type="checkbox" /></td>
+
+        $("#initTable").after(`<tr>
+        <td><span class="customChek-container">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <span class="customChek">
+            <svg
+              width="10"
+              height="8"
+              viewBox="0 0 10 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                stroke="white"
+                stroke-width="2"
+              />
+            </svg>
+          </span>
+        </span></td>
         <td>
-          ${response.data[i].title} <span class="new tag">New</span>
-          <a class="see-detail-link" id="${response.data[i].id}">
-          See Details 
-          <img src="./../images/arrow.png" alt="arrow"/></a>
+        ${response.data[i].title} <span class="new tag">New</span
+          ><a href="javascript:void(0);" class="see-detail-link" id="${
+            response.data[i].id
+          }"
+            >See Details <img src="./../images/arrow.png" alt="arrow"
+          /></a>
         </td>
         <td>${response.data[i]?.documents[0]?.name?.split(".")[0] || ""}</td>
         <td>
           <span class="tag blue">4.1 Informational Attatchments</span>
         </td>
         <td>
-            ${labels}
+        ${labels}
         </td>
         <td class="user-images">
-            ${images}
+        ${images}
         </td>
         <td class="date ${date.dueDateClass}">${date.dueDate}</td>
       </tr>`);
@@ -95,17 +120,104 @@ function getTaskDetails(id) {
       $("#drawerTitle").text(response.data.title);
       let assigneeHtml = "";
       for (let i = 0; i < response.data.assignees.length; i++) {
+        let firstDiv =
+          i === response.data.assignees.length - 1
+            ? `<div class="add-tag">`
+            : ``;
+        let secondaryDiv =
+          i === response.data.assignees.length - 1
+            ? `                      <div class="dropdown filter-dropdown add-icon">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img src="./../images/add-icon.svg" alt="add-icon"/>
+          </button>
+          <ul
+            class="dropdown-menu"
+            aria-labelledby="dropdownMenuButton1"
+          >
+            <li>
+              <ul class="form-ul">
+                <li class="searchInput">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    class="form-control"
+                  />
+                </li>
+                <li class="checkbox-item">
+                  <span class="form-check">
+                    <span class="customChek-container">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      />
+                      <span class="customChek">
+                        <svg
+                          width="10"
+                          height="8"
+                          viewBox="0 0 10 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                            stroke="white"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span class="checkbox-profile">
+                      <span class="profile-img"
+                        ><img src="./../images/assignee1.png" alt="user"
+                      /></span>
+                      <span class="profile-text">
+                        <span class="name">Britney Spurs</span>
+                        <span class="email">britneyspurs@gmai</span>
+                      </span>
+                    </span>
+                  </span>
+                  <span class="count">12</span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <span class="form-btns">
+                <button class="btn theme-btn" type="button">
+                  Save
+                </button>
+                <button
+                  class="btn theme-btn transparent-btn"
+                  type="button"
+                >
+                  Clear All
+                </button>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>`
+            : ``;
+        debugger; // eslint-disable-line no-debugger
         assigneeHtml =
           assigneeHtml +
-          `<div class="delete-opt">
-        <div class="userImg">
-          <img src="${response.data.assignees[i]?.avatar}" alt="assignee1" />
-        </div>
-        <span>${response.data.assignees[i].full_name}</span>
-        <a href="" class="crossIcon">
-          <img src="./../images/circle-close.svg" />
-        </a>
-      </div>
+          `${firstDiv}<div class="delete-opt">
+          <div class="userImg">
+            <img src="${response.data.assignees[i]?.avatar}" alt="assignee1" />
+          </div>
+          <span>${response.data.assignees[i].full_name}</span>
+          <a href="" class="crossIcon">
+            <img src="./../images/circle-close.svg" />
+          </a>
+        </div>${secondaryDiv}
         `;
       }
       $("#drawerassignee").html(assigneeHtml);
@@ -124,6 +236,9 @@ function getTaskDetails(id) {
       let docName = response.data.documents[0]?.name.split(".")[0].trim();
       $("#documentName").text(docName || "");
       $("#drawerDescription").html(response.data?.description || "");
+      $("#drawerStatus").text(
+        response.data?.status === "incompleted" ? "In Progress" : "Completed"
+      );
     })
 
     .catch(function () {})
@@ -146,12 +261,29 @@ function getSolicitationList() {
       for (let i = 0; i < response.data.length; i++) {
         $("#initSolicitation").after(`<li class="checkbox-item">
         <span class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="${response.data[i].id}"
-          />
+          <span class="customChek-container">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="${response.data[i].id}"
+            />
+            <span class="customChek">
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                  stroke="white"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+          </span>
           <label
             class="form-check-label"
             for="flexCheckDefault"
@@ -160,7 +292,25 @@ function getSolicitationList() {
           </label>
         </span>
         <span class="count">${i + 1}</span>
-      </li>`);
+        </li>`);
+
+        //   $("#initSolicitation").after(`<li class="checkbox-item">
+        //   <span class="form-check">
+        //     <input
+        //       class="form-check-input"
+        //       type="checkbox"
+        //       value=""
+        //       id="${response.data[i].id}"
+        //     />
+        //     <label
+        //       class="form-check-label"
+        //       for="flexCheckDefault"
+        //     >
+        //     ${response.data[i].name}
+        //     </label>
+        //   </span>
+        //   <span class="count">${i + 1}</span>
+        // </li>`);
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", solicitationSelectClick);
@@ -178,23 +328,42 @@ function getLabels() {
       filterData.labels = response.data;
       response.data.reverse();
       for (let i = 0; i < response.data.length; i++) {
-        $("#initlabels").after(`<li class="checkbox-item">
+        $("#initlabels").after(`
+        <li class="checkbox-item">
         <span class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id=${response.data[i].id}
-          />
+          <span class="customChek-container">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id=${response.data[i].id}
+            />
+            <span class="customChek">
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                  stroke="white"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+          </span>
           <label
             class="form-check-label"
             for="flexCheckDefault"
           >
-            ${response.data[i].name}
+          ${response.data[i].name}
           </label>
         </span>
         <span class="count">${i + 1}</span>
-      </li>`);
+      </li>
+        `);
 
         document
           .getElementById(response.data[i].id)
@@ -215,22 +384,38 @@ function getDocuments() {
       for (let i = 0; i < response.data.length; i++) {
         $("#initDocument").after(`<li class="checkbox-item">
         <span class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id=${response.data[i].id}
-          />
+          <span class="customChek-container">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="${response.data[i].id}"
+            />
+            <span class="customChek">
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                  stroke="white"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+          </span>
           <label
             class="form-check-label"
             for="flexCheckDefault"
           >
-            ${response.data[i].name}
+          ${response.data[i].name}
           </label>
         </span>
         <span class="count">${i + 1}</span>
       </li>`);
-
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", documentSelectClick);
@@ -250,16 +435,32 @@ function getUsers() {
       for (let i = 0; i < response.data.length; i++) {
         $("#initUsers").after(`<li class="checkbox-item">
         <span class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="${response.data[i].id}"
-
-          />
+          <span class="customChek-container">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="${response.data[i].id}"
+            />
+            <span class="customChek">
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                  stroke="white"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+          </span>
           <span class="checkbox-profile">
             <span class="profile-img"
-              ><img src=${response.data[i].avatar} alt="user" width="25"
+              ><img src="${response.data[i].avatar}" alt="user"
             /></span>
             <span class="profile-text">
               <span class="name">${response.data[i].full_name}</span>

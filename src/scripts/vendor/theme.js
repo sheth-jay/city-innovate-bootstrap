@@ -7,8 +7,8 @@ jQuery(document).ready(function () {
     })
     .change();
 
-  //
-  $("#drawerOpener").click(function () {
+  // See Detail Drawer
+  $(".see-detail-link").click(function () {
     $(".see-detail-drawer").addClass("drawer-closed");
     return false;
   });
@@ -16,4 +16,20 @@ jQuery(document).ready(function () {
     $(".see-detail-drawer").removeClass("drawer-closed");
     return false;
   });
+
+  // Create Task Drawer
+  $("#create-task-drawerOpener").click(function () {
+    $(".create-task-drawer").addClass("drawer-closed");
+    return false;
+  });
+  $(".close-task-drawer").click(function () {
+    $(".create-task-drawer").removeClass("drawer-closed");
+    return false;
+  });
+
+
+  $('.multi-select').select2({
+    tags: true,
+  });
+  
 });
