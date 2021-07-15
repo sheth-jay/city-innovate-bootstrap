@@ -89,15 +89,15 @@
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
-                      id="dropdownMenuButton1"
+                      id="solicitationDropDown"
                       data-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <span class="btn-title">Solicitation</span>
+                      <span id="solicitationTitle" class="btn-title">Solicitation</span>
                     </button>
                     <ul
                       class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
+                      aria-labelledby="solicitationDropDown"
                       id="solicitation"
                     >
                       <li>
@@ -114,7 +114,7 @@
                       </li>
                       <li>
                         <span class="form-btns">
-                          <button class="btn theme-btn" type="button">
+                          <button id="solicitationButton" class="btn theme-btn" type="button">
                             See Results
                           </button>
                           <button
@@ -132,15 +132,15 @@
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
-                      id="dropdownMenuButton1"
+                      id="labelDropDown"
                       data-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <span class="btn-title">Labels</span>
+                      <span id="labelTitle" class="btn-title">Labels</span>
                     </button>
                     <ul
                       class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
+                      aria-labelledby="labelDropDown"
                     >
                       <li>
                         <ul class="form-ul">
@@ -156,82 +156,7 @@
                       </li>
                       <li>
                         <span class="form-btns">
-                          <button class="btn theme-btn" type="button">
-                            See Results
-                          </button>
-                          <button
-                            class="btn theme-btn transparent-btn"
-                            type="button"
-                          >
-                            Clear All
-                          </button>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="dropdown filter-dropdown">
-                    <button
-                      class="btn btn-secondary dropdown-toggle btn-selected"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <span class="btn-title">Document</span>
-                      <span class="totleCount">1 </span>
-                    </button>
-                    <ul
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li>
-                        <ul class="form-ul">
-                          <li class="searchInput">
-                            <input
-                              type="text"
-                              placeholder="Search"
-                              class="form-control"
-                            />
-                          </li>
-                          <li class="checkbox-item">
-                            <span class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
-                              />
-                              <label
-                                class="form-check-label"
-                                for="flexCheckDefault"
-                              >
-                                CDT STP RFO
-                              </label>
-                            </span>
-                            <span class="count">2</span>
-                          </li>
-                          <li class="checkbox-item">
-                            <span class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="flexCheckDefault"
-                              />
-                              <label
-                                class="form-check-label"
-                                for="flexCheckDefault"
-                              >
-                                Attachment 1: Scope of...
-                              </label>
-                            </span>
-                            <span class="count">5</span>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <span class="form-btns">
-                          <button class="btn theme-btn" type="button">
+                          <button id="labelButton" class="btn theme-btn" type="button">
                             See Results
                           </button>
                           <button
@@ -248,15 +173,56 @@
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
-                      id="dropdownMenuButton1"
+                      id="documentDropDown"
                       data-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <span class="btn-title"> Assigned to </span>
+                      <span id="documentTitle" class="btn-title">Document</span>
                     </button>
                     <ul
                       class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
+                      aria-labelledby="documentDropDown"
+                    >
+                      <li>
+                        <ul class="form-ul">
+                          <li class="searchInput">
+                            <input
+                              type="text"
+                              placeholder="Search"
+                              class="form-control"
+                            />
+                          </li>
+                          <li id="initDocument"></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span class="form-btns">
+                          <button id="documentButton" class="btn theme-btn" type="button">
+                            See Results
+                          </button>
+                          <button
+                            class="btn theme-btn transparent-btn"
+                            type="button"
+                          >
+                            Clear All
+                          </button>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="dropdown filter-dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="assignedDropDown"
+                      data-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <span id="assignedTitle" class="btn-title"> Assigned to </span>
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="assignedDropDown"
                     >
                       <li>
                         <ul class="form-ul">
@@ -274,7 +240,7 @@
 
                       <li>
                         <span class="form-btns">
-                          <button class="btn theme-btn" type="button">
+                          <button id="assignedButton" class="btn theme-btn" type="button">
                             See Results
                           </button>
                           <button
@@ -428,11 +394,11 @@
                   <span class="custom-checkbox"></span>
                 </label>
               </th>
-              <th>Task name</th>
+              <th id="sort_title">Task name</th>
               <th>Document</th>
               <th>Section</th>
-              <th>Labels</th>
-              <th>Assigned to</th>
+              <th id="sort_labels">Labels</th>
+              <th id="sort_assigness">Assigned to</th>
               <th>Due Date</th>
             </thead>
             <tbody>
@@ -442,7 +408,7 @@
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
-                      id="dropdownMenuButton7"
+                      id="drawerOpener1"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
@@ -503,7 +469,7 @@
           <li class="breadcrumb-item active" aria-current="page">CDT STP FO</li>
         </ol>
       </nav>
-      <h2>There are several issues with the naming of sections</h2>
+      <h2 id="drawerTitle">There are several issues with the naming of sections</h2>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <a
@@ -542,6 +508,7 @@
               <span class="overview-label">Assignee</span>
               <div class="info-data">
                 <div class="assignee-info">
+                  <div id="drawerassignee">
                   <div class="delete-opt">
                     <div class="userImg">
                       <img src="./../images/assignee1.png" alt="assignee1" />
@@ -575,17 +542,21 @@
                     </a>
                   </div>
                 </div>
+                </div>
               </div>
             </div>
             <div class="info">
               <span class="overview-label">Due date</span>
-              <div class="dueDateClass">
-                <img src="./../images/Calender.svg" /> Today
+              <div id="drawerDueDate">
+                <div class="dueDateClass">
+                  <img src="./../images/Calender.svg" /> Today
+                </div>
               </div>
+
             </div>
             <div class="info">
               <span class="overview-label">Labels</span>
-              <div class="info-data">
+              <div class="info-data" id="drawerLabel">
                 <span class="tags">Legal</span>
                 <span class="tags">ADA</span>
               </div>
@@ -599,7 +570,7 @@
             <div class="info">
               <span class="overview-label">Document</span>
               <div class="info-data">
-                <span class="doc-text">CDT STP FO</span>
+                <span class="doc-text" id="documentName">CDT STP FO</span>
               </div>
             </div>
             <div class="info">
@@ -611,7 +582,7 @@
             <div class="info infotext">
               <span class="overview-label">Description</span>
               <div class="info-desc">
-                <p>
+                <p id="drawerDescription">
                   Below are the details we have for EDR2 Independent
                   Verification & Validation (IV&V) and Quality Assurance (QA).
                   You'll also find options for updating these details or

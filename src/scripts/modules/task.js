@@ -1,31 +1,48 @@
 import Api from "../../utils/axios";
 import { getFormattedDateAndClass } from "../../utils/index";
-$(document).ready(function () {
-  //   $("#commentForm").submit(function (event) {
-  //     event.preventDefault();
-  //     $("#commentForm").validate();
-  //     console.log("evebt", $("#commentForm").validate());
-  //     alert("Submitted");
-  //   });
+let initFilter = {
+  solicitation: [],
+  labels: [],
+  document: [],
+  assignedTo: [],
+  thisWeek: [],
+};
+let filterData = {
+  solicitations: [],
+  labels: [],
+  documents: [],
+  assignedTos: [],
+  thisWeeks: [],
+};
 
-  //   let filterData = {
-  //     solicitation: "",
-  //     labels: "",
-  //     document: "",
-  //     assignedTo: "",
-  //     thisWeek: "",
-  //   };
+let sortable = {
+  sort_title: "asc",
+  sort_assigness: "asc",
+  sort_labels: "asc",
+};
+
+$(document).ready(function () {
+  $("#solicitationButton").click(filterClick);
+  $("#labelButton").click(filterClick);
+  $("#assignedButton").click(filterClick);
+  $("#documentButton").click(filterClick);
+
+  $("#sort_title").click(sortTable);
+  $("#sort_labels").click(sortTable);
+  $("#sort_assigness").click(sortTable);
 
   getSolicitationList();
   getLabels();
   getUsers();
-  getTask();
+  getTasks();
+  getDocuments();
 });
 
-function getTask() {
-  Api.get(`/tasks?page=1`)
+function getTasks(taskurl = "") {
+  Api.get(`/tasks?page=1${taskurl}`)
     .then(function (response) {
       response.data.reverse();
+      $("#initTable").nextAll().remove();
       for (let i = 0; i < response.data.length; i++) {
         let images = "";
         for (let j = 0; j < response.data[i].assignees.length; j++) {
@@ -39,13 +56,12 @@ function getTask() {
             labels +
             `<span class="tag">${response.data[i].labels[j].name}</span>`;
         }
-
         let date = getFormattedDateAndClass(response.data[i].due_date);
-        $("#initTable").after(`<tr>
+        $("#initTable").after(`<tr id = "row1">
         <td><input type="checkbox" /></td>
         <td>
           ${response.data[i].title} <span class="new tag">New</span>
-          <a href="javascript:void(0);" class="see-detail-link">
+          <a class="see-detail-link" id="${response.data[i].id}">
           See Details 
           <img src="./../images/arrow.png" alt="arrow"/></a>
         </td>
@@ -61,6 +77,9 @@ function getTask() {
         </td>
         <td class="date ${date.dueDateClass}">${date.dueDate}</td>
       </tr>`);
+        document
+          .getElementById(response.data[i].id)
+          .addEventListener("click", seeDetails);
       }
     })
     .catch(function () {})
@@ -69,9 +88,60 @@ function getTask() {
     });
 }
 
+function getTaskDetails(id) {
+  Api.get(`/tasks/${id}`)
+    .then(function (response) {
+      console.log("response.data", response.data);
+      $("#drawerTitle").text(response.data.title);
+      let assigneeHtml = "";
+      for (let i = 0; i < response.data.assignees.length; i++) {
+        assigneeHtml =
+          assigneeHtml +
+          `<div class="delete-opt">
+        <div class="userImg">
+          <img src="${response.data.assignees[i]?.avatar}" alt="assignee1" />
+        </div>
+        <span>${response.data.assignees[i].full_name}</span>
+        <a href="" class="crossIcon">
+          <img src="./../images/circle-close.svg" />
+        </a>
+      </div>
+        `;
+      }
+      $("#drawerassignee").html(assigneeHtml);
+      let date = getFormattedDateAndClass(response.data.due_date);
+      $("#drawerDueDate").html(`<div class="dueDateClass">
+      <img src="./../images/Calender.svg" /> ${date.dueDate}
+       </div>`);
+      let labelSpan = "";
+      for (let i = 0; i < response.data.labels.length; i++) {
+        labelSpan =
+          labelSpan +
+          `<span class="tags">${response.data.labels[i].name}</span>
+        `;
+      }
+      $("#drawerLabel").html(labelSpan);
+      let docName = response.data.documents[0]?.name.split(".")[0].trim();
+      $("#documentName").text(docName || "");
+      $("#drawerDescription").html(response.data?.description || "");
+    })
+
+    .catch(function () {})
+    .then(function () {
+      // always executed
+    });
+}
+
+function seeDetails(event) {
+  $(".see-detail-drawer").addClass("drawer-closed");
+  getTaskDetails(event.target.id);
+  return false;
+}
+
 function getSolicitationList() {
   Api.get(`/solicitations`)
     .then(function (response) {
+      filterData.solicitations = response.data;
       response.data.reverse();
       for (let i = 0; i < response.data.length; i++) {
         $("#initSolicitation").after(`<li class="checkbox-item">
@@ -80,7 +150,7 @@ function getSolicitationList() {
             class="form-check-input"
             type="checkbox"
             value=""
-            id="flexCheckDefault"
+            id="${response.data[i].id}"
           />
           <label
             class="form-check-label"
@@ -91,6 +161,9 @@ function getSolicitationList() {
         </span>
         <span class="count">${i + 1}</span>
       </li>`);
+        document
+          .getElementById(response.data[i].id)
+          .addEventListener("change", solicitationSelectClick);
       }
     })
     .catch(function () {})
@@ -102,6 +175,7 @@ function getSolicitationList() {
 function getLabels() {
   Api.get(`/labels`)
     .then(function (response) {
+      filterData.labels = response.data;
       response.data.reverse();
       for (let i = 0; i < response.data.length; i++) {
         $("#initlabels").after(`<li class="checkbox-item">
@@ -110,7 +184,7 @@ function getLabels() {
             class="form-check-input"
             type="checkbox"
             value=""
-            id="flexCheckDefault"
+            id=${response.data[i].id}
           />
           <label
             class="form-check-label"
@@ -121,6 +195,45 @@ function getLabels() {
         </span>
         <span class="count">${i + 1}</span>
       </li>`);
+
+        document
+          .getElementById(response.data[i].id)
+          .addEventListener("change", labelSelectClick);
+      }
+    })
+    .catch(function () {})
+    .then(function () {
+      // always executed
+    });
+}
+
+function getDocuments() {
+  Api.get(`/documents`)
+    .then(function (response) {
+      filterData.documents = response.data;
+      response.data.reverse();
+      for (let i = 0; i < response.data.length; i++) {
+        $("#initDocument").after(`<li class="checkbox-item">
+        <span class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id=${response.data[i].id}
+          />
+          <label
+            class="form-check-label"
+            for="flexCheckDefault"
+          >
+            ${response.data[i].name}
+          </label>
+        </span>
+        <span class="count">${i + 1}</span>
+      </li>`);
+
+        document
+          .getElementById(response.data[i].id)
+          .addEventListener("change", documentSelectClick);
       }
     })
     .catch(function () {})
@@ -132,6 +245,7 @@ function getLabels() {
 function getUsers() {
   Api.get(`/users`)
     .then(function (response) {
+      filterData.assignedTos = response.data;
       response.data.reverse();
       for (let i = 0; i < response.data.length; i++) {
         $("#initUsers").after(`<li class="checkbox-item">
@@ -157,7 +271,7 @@ function getUsers() {
       </li>`);
         document
           .getElementById(response.data[i].id)
-          .addEventListener("change", callFunction);
+          .addEventListener("change", userSelectClick);
       }
     })
     .catch(function () {})
@@ -166,6 +280,137 @@ function getUsers() {
     });
 }
 
-function callFunction() {
-  debugger; // eslint-disable-line no-debugger
+function userSelectClick(event) {
+  let index = initFilter.assignedTo.findIndex((e) => e === event.target.id);
+  if (index > -1) {
+    initFilter.assignedTo.splice(index, 1);
+  } else {
+    initFilter.assignedTo.push(event.target.id);
+  }
+
+  if (initFilter.assignedTo.length === 0) {
+    $("#assignedDropDown").removeClass("btn-selected");
+    $("#assignedTotalCount")?.remove();
+  } else {
+    $("#assignedDropDown").addClass("btn-selected");
+    $("#assignedTotalCount")?.remove();
+    $("#assignedTitle").after(
+      `<span id="assignedTotalCount" class="totleCount">${initFilter.assignedTo.length} </span>`
+    );
+  }
+}
+
+function labelSelectClick(event) {
+  let index = initFilter.labels.findIndex((e) => e === event.target.id);
+  if (index > -1) {
+    initFilter.labels.splice(index, 1);
+  } else {
+    initFilter.labels.push(event.target.id);
+  }
+
+  if (initFilter.labels.length === 0) {
+    $("#labelDropDown").removeClass("btn-selected");
+    $("#labelTotalCount")?.remove();
+  } else {
+    $("#labelDropDown").addClass("btn-selected");
+    $("#labelTotalCount")?.remove();
+    $("#labelTitle").after(
+      `<span id="labelTotalCount" class="totleCount">${initFilter.labels.length} </span>`
+    );
+  }
+}
+
+function documentSelectClick(event) {
+  let index = initFilter.document.findIndex((e) => e === event.target.id);
+  if (index > -1) {
+    initFilter.document.splice(index, 1);
+  } else {
+    initFilter.document.push(event.target.id);
+  }
+
+  if (initFilter.document.length === 0) {
+    $("#documentDropDown").removeClass("btn-selected");
+    $("#documentTotalCount")?.remove();
+  } else {
+    $("#documentDropDown").addClass("btn-selected");
+    $("#documentTotalCount")?.remove();
+    $("#documentTitle").after(
+      `<span id="documentTotalCount" class="totleCount">${initFilter.document.length} </span>`
+    );
+  }
+}
+
+function solicitationSelectClick(event) {
+  let index = initFilter.solicitation.findIndex((e) => e === event.target.id);
+  if (index > -1) {
+    initFilter.solicitation.splice(index, 1);
+  } else {
+    initFilter.solicitation.push(event.target.id);
+  }
+  if (initFilter.solicitation.length === 0) {
+    $("#solicitationDropDown").removeClass("btn-selected");
+    $("#solicitationTotalCount")?.remove();
+  } else {
+    $("#solicitationDropDown").addClass("btn-selected");
+    $("#solicitationTotalCount")?.remove();
+    $("#solicitationTitle").after(
+      `<span id="solicitationTotalCount" class="totleCount">${initFilter.solicitation.length} </span>`
+    );
+  }
+}
+
+function filterClick() {
+  let url1 = "";
+  let url2 = "";
+  let url3 = "";
+  let url4 = "";
+
+  if (initFilter.solicitation.length > 0) {
+    let constructSolicitation = [];
+    initFilter.solicitation.forEach((sol) => {
+      let solData = filterData.solicitations.find((e) => e.id === sol);
+      if (solData) {
+        constructSolicitation.push(solData.name);
+      }
+    });
+    url1 = `&solicitation=[${JSON.stringify(constructSolicitation)}]`;
+  }
+  if (initFilter.labels.length > 0) {
+    let constructLabels = [];
+    initFilter.labels.forEach((lab) => {
+      let labData = filterData.labels.find((e) => e.id === lab);
+      if (labData) {
+        constructLabels.push(labData.name);
+      }
+    });
+    url2 = `&labels=${JSON.stringify(constructLabels)}`;
+  }
+  if (initFilter.assignedTo.length > 0) {
+    let constructAssigned = [];
+    initFilter.assignedTo.forEach((ass) => {
+      let assignedData = filterData.assignedTos.find((e) => e.id === ass);
+      if (assignedData) {
+        constructAssigned.push(assignedData.first_name);
+      }
+    });
+    url3 = `&user=${JSON.stringify(constructAssigned)}`;
+  }
+  if (initFilter.document.length > 0) {
+    let constructDocument = [];
+    initFilter.document.forEach((doc) => {
+      let docData = filterData.documents.find((e) => e.id === doc);
+      if (docData) {
+        constructDocument.push(docData.name.split(".")[0].trim());
+      }
+    });
+    url4 = `&document=${JSON.stringify(constructDocument)}`;
+  }
+  let url = url1 + url2 + url3 + url4;
+  getTasks(url);
+}
+
+function sortTable(event) {
+  let target = sortable[event.target.id] === "asc" ? "desc" : "asc";
+  sortable[event.target.id] = target;
+  getTasks(`&${[event.target.id]}=${target}`);
 }
