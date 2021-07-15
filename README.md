@@ -55,7 +55,7 @@ Shorten directories and files structure which you'll see after build:
 
 ```shell
 html-starter-bs4-webpack/
-├── assets/                 # template assets
+├── src/                 # template assets
 │   ├── fonts/              # place template fonts files here
 │   ├── html/               # template HTML files
 │   │  ├── partials/        # common parts of HTML code

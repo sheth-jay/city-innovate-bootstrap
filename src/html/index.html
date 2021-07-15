@@ -6,7 +6,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <script>
+      if(!localStorage.getItem('token')){
+        window.location.href='/login.html'
+      }
+    </script>
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" type="text/css" href="./CSS/all.min.css" />
     <link href="./CSS/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -488,7 +492,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="selected-task-popover">
+          <!-- <div class="selected-task-popover">
             <span>2 tasks selected</span>
             <div class="action-wrap">
               <Button>
@@ -522,7 +526,7 @@
                 <path d="M7 7L17 17M7 17L17 7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg></Button>
             </div>
-          </div>
+          </div> -->
         </div>
           <nav aria-label="Page navigation example">
             <ul class="pagination" id="paginationId">
@@ -832,124 +836,23 @@
                   </ul>
                 </div>
               </div>
+    
               <div class="userlist">
-                <div class="userlist-item">
-                  <div class="profile-info">
-                    <div class="profile-info-img">
-                      <img src="./../images/list-avtar.png" />
-                    </div>
-
-                    <div class="profileText">
-                      <p><span>Jessica Lopez</span></p>
-                      <p>
-                        This makes sense for me. What do you think?
-                        <a href="">@jordyalba</a>
-                      </p>
-                      <span>9:45 AM Today</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="userlist-item item-attchment">
-                  <div class="profile-info">
-                    <div class="profile-info-img">
-                      <img src="./../images/list-avtar.png" />
-                    </div>
-
-                    <div class="profileText">
-                      <p><span>Mark Ford </span></p>
-                      <div class="highlitedText">
-                        <span class="highlight">Highlighted text:</span>
-                        <p>under the policies and procedures devel...</p>
+                <div id="commentSection">
+                  <div class="userlist-item">
+                    <div class="profile-info">
+                      <div class="profile-info-img">
+                        <img src="./../images/list-avtar.png" />
                       </div>
-                      <span>9:45 AM Today</span>
-                    </div>
-                  </div>
-                  <div class="profile-right">
-                    <a href="" class="viewl_ink"
-                      ><span class="pr-1">View in doc</span>
-                      <svg
-                        width="15"
-                        height="14"
-                        viewBox="0 0 15 14"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13 8.86956V10.4886C13 11.9613 11.806 13.1553 10.3333 13.1553H3.66667C2.194 13.1553 1 11.9613 1 10.4886V3.82194C1 2.34927 2.194 1.15527 3.66667 1.15527H5.47619"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        ></path>
-                        <path
-                          d="M9.10059 1.76855H12.6376V5.30556"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        ></path>
-                        <path
-                          d="M6 8.45508L12.5 1.95508"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        ></path>
-                      </svg>
-                    </a>
-                    <div class="dropdown">
-                      <button
-                        class="btn btn-secondary dropdown-toggle btn-none"
-                        type="button"
-                        id="dropdownMenuButton7"
-                        data-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <img src="./../images/Union.png" alt="Union" />
-                      </button>
-                      <ul
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton7"
-                      >
-                        <li><a class="dropdown-item" href="#">Archive</a></li>
-                        <li>
-                          <a class="dropdown-item" href="#"
-                            >Allow Guest Contributors to edit</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="userlist-item">
-                  <div class="profile-info">
-                    <div class="profile-info-img">
-                      <img src="./../images/list-avtar.png" />
-                    </div>
-
-                    <div class="profileText">
-                      <p><span>Jessica Lopez</span></p>
-                      <p>
-                        Quite a discussion 😆. Glad it help figuring this stuff
-                        out.
-                      </p>
-                      <span>9:45 AM Today</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="userlist-item">
-                  <div class="profile-info">
-                    <div class="profile-info-img">
-                      <img src="./../images/list-avtar.png" />
-                    </div>
-
-                    <div class="profileText">
-                      <p><span>ames King </span></p>
-                      <p>
-                        Fix several issues with the naming of sections 1.2 Legal
-                        Assesment
-                      </p>
-                      <span>9:45 AM Today</span>
+  
+                      <div class="profileText">
+                        <p><span>Jessica Lopez</span></p>
+                        <p>
+                          This makes sense for me. What do you think?
+                          <a href="">@jordyalba</a>
+                        </p>
+                        <span>9:45 AM Today</span>
+                      </div>
                     </div>
                   </div>
                 </div>

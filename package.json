@@ -20,7 +20,7 @@
     "prod": "npm run build",
     "start": "set NODE_ENV=development&& webpack-dev-server --mode development --open",
     "watch": "npm run dev:watch",
-    "lint": "eslint assets/scripts/*.js",
+    "lint": "eslint src/scripts/*.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {

@@ -1,5 +1,7 @@
 import Api from "../../utils/axios";
 import { getFormattedDateAndClass } from "../../utils/index";
+import moment from "moment";
+
 let initFilter = {
   solicitation: [],
   labels: [],
@@ -166,7 +168,6 @@ function getTaskDetails(id) {
   $("#page-loader").show();
   Api.get(`/tasks/${id}`)
     .then(function (response) {
-      console.log("response.data", response.data);
       $("#drawerTitle").text(response.data.title);
       let assigneeHtml = "";
       for (let i = 0; i < response.data.assignees.length; i++) {
@@ -290,6 +291,30 @@ function getTaskDetails(id) {
         response.data?.status === "incompleted" ? "In Progress" : "Completed"
       );
       $("#page-loader").hide();
+
+      let comments = "";
+      for (let i = 0; i < response.data.comments.length; i++) {
+        comments =
+          comments +
+          `<div class="userlist-item">
+            <div class="profile-info">
+              <div class="profile-info-img">
+                <img src="${response.data.comments[i]?.commentor_avatar}" />
+              </div>
+
+              <div class="profileText">
+                <p><span>${response.data.comments[i]?.user_name}</span></p>
+                <p>
+                  ${response.data.comments[i]?.comment}
+                </p>
+                <span>${moment(response.data.comments[i]?.created_at).format(
+                  "LLLL"
+                )}</span>
+              </div>
+            </div>
+            </div>`;
+      }
+      $("#commentSection").html(comments);
     })
 
     .catch(function () {})
