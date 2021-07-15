@@ -1,5 +1,4 @@
 import Api from '../../utils/axios';
-import { BaseAPIURL } from "../../utils/config";
 
 $(document).ready(function () {
   let fileList = {};
@@ -28,13 +27,13 @@ $(document).ready(function () {
       userDetails.append('user[confirm_password]', $('#confirm_password').val());
 
       Api
-      .post(`${BaseAPIURL}/sign_up`, userDetails, {
+      .post('/sign_up', userDetails, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
       .then(function () {
-          window.location.href = "/login.html";
+        window.location.href = "/login.html";
       })
       .catch(function (error) {
         window.location.href = "/login.html";
