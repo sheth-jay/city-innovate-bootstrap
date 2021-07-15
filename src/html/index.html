@@ -889,46 +889,40 @@
           </svg>                
       </button>
       <div class="create-task-form">
-        <form>
+        <form id="createTaskForm">
           <div class="form-item">
-            <label>Name</label>
-            <input type="text" placeholder="Please Enter Name!" />
+            <label>Title</label>
+            <input type="text" placeholder="Please Enter Task Title" id="title" required />
           </div>
           <div class="form-item">
             <label>Description</label>
-            <textarea placeholder="Please Enter Description!"></textarea>
+            <textarea placeholder="Please Enter Description" id="description" required></textarea>
           </div>
           <div class="form-item">
             <label>Document</label>
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+              <input type="file" class="custom-file-input" id="upload_document" aria-describedby="inputGroupFileAddon01" required>
               <label class="custom-file-label" for="inputGroupFile01">Please upload Document!</label>
             </div>
           </div>
           <div class="form-item">
+            <label>Solicitation</label>
+            <select class="multi-select" multiple="multiple" id="solicitations" required></select>
+          </div>
+          <div class="form-item">
             <label>Labels</label>
-            <select class="multi-select" multiple="multiple">
-              <option>ADA</option>
-              <option>Legal</option>
-              <option>label1</option>
-              <option>label2</option>
-            </select>
+            <select class="multi-select" multiple="multiple" id="labels" required></select>
           </div>
           <div class="form-item">
             <label>AssignedTo</label>
-            <select class="multi-select" multiple="multiple">
-              <option>Assignee1</option>
-              <option>Assignee1</option>
-              <option>Assignee1</option>
-              <option>Assignee1</option>
-            </select>
+            <select class="multi-select" multiple="multiple" id="assignees" required></select>
           </div>
           <div class="form-item">
             <label>DueDate</label>
-            <input type="date" placeholder="Please select DueDate!">
+            <input type="date" placeholder="Please select DueDate!" id="due_date" required>
           </div>
           <div class="form-action">
-            <button class="btn">Save</button>
+            <button class="btn" type="submit">Save</button>
             <button class="btn btn-cancel">Cancel</button>
           </div>
         </form>

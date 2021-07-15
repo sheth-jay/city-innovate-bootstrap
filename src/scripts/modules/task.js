@@ -387,6 +387,9 @@ function getSolicitationList() {
         //   </span>
         //   <span class="count">${i + 1}</span>
         // </li>`);
+        $('#solicitations').append(`
+          <option value=${response.data[i].id}>${response.data[i].name}</option>
+        `)
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", solicitationSelectClick);
@@ -440,7 +443,9 @@ function getLabels() {
         <span class="count">${i + 1}</span>
       </li>
         `);
-
+      $('#labels').append(`
+        <option value=${response.data[i].id}>${response.data[i].name}</option>
+      `)
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", labelSelectClick);
@@ -546,6 +551,9 @@ function getUsers() {
         </span>
         <span class="count">12</span>
       </li>`);
+      $('#assignees').append(`
+        <option value=${response.data[i].id}>${response.data[i].full_name}</option>
+      `)
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", userSelectClick);
