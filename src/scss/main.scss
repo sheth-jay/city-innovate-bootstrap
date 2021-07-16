@@ -599,7 +599,7 @@ li.checkbox-item.li-checked {
   height: 100vh;
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
-  z-index: 2;
+  z-index: 5;
   .breadcrumb {
     padding: 0;
     background: transparent;
@@ -1200,7 +1200,7 @@ span.status {
   height: 100vh;
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
-  z-index: 2;
+  z-index: 5;
   @media (max-width: 450px) {
     width: 300px;
     padding: 20px;
@@ -1440,11 +1440,6 @@ span.status {
       opacity: 0;
       cursor: pointer;
     }
-  }
-}
-.signup-from {
-  h2 {
-    text-align: center;
   }
 }
 //login end
