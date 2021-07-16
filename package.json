@@ -21,7 +21,8 @@
     "start": "set NODE_ENV=development&& webpack-dev-server --mode development --open",
     "watch": "npm run dev:watch",
     "lint": "eslint src/scripts/*.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "lint:fix":"eslint --fix src/scripts/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
