@@ -357,11 +357,11 @@ function getTasks(taskurl = "") {
         </span></td>
         <td>
         <span class="table-desc">${
-  response.data[i].title
-}</span> <span class="new tag">New</span
+          response.data[i].title
+        }</span> <span class="new tag">New</span
           ><a href="javascript:void(0);" class="see-detail-link" id="${
-  response.data[i].id
-}"
+            response.data[i].id
+          }"
             >See Details <img src="./../images/arrow.png" alt="arrow"
           /></a>
         </td>
@@ -556,8 +556,8 @@ function getTaskDetails(id) {
                   ${response.data.comments[i]?.comment}
                 </p>
                 <span>${moment(response.data.comments[i]?.created_at).format(
-    "LLLL"
-  )}</span>
+                  "LLLL"
+                )}</span>
               </div>
             </div>
             </div>`;
@@ -566,9 +566,7 @@ function getTaskDetails(id) {
 
         let history = "";
         for (let k = 0; k < response.data.versions.length; k++) {
-          history = 
-            history + 
-            `<p>${response.data.versions[k].history}</p>`;
+          history = history + `<p>${response.data.versions[k].history}</p>`;
         }
         $("#task-update-info").html(history);
 
@@ -775,11 +773,67 @@ function getLabels() {
           .getElementById(response.data[i].id)
           .addEventListener("change", labelSelectClick);
       }
+
+      $("#searchSolicitation").on("input", searchSolicitation);
+      $("#searchSolicitation").on("input", searchLabels);
     })
     .catch(function () {})
     .then(function () {
       // always executed
     });
+}
+
+function searchLabels() {}
+
+function searchSolicitation(event) {
+  $("#initSolicitation").nextAll().remove();
+  for (let i = 0; i < filterData.solicitations.length; i++) {
+    if (
+      filterData.solicitations[i].name
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase())
+    ) {
+      $("#initSolicitation").after(`
+      <li class="checkbox-item">
+      <span class="form-check">
+        <span class="customChek-container">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id=${filterData.solicitations[i].id}
+          />
+          <span class="customChek">
+            <svg
+              width="10"
+              height="8"
+              viewBox="0 0 10 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                stroke="white"
+                stroke-width="2"
+              />
+            </svg>
+          </span>
+        </span>
+        <label
+          class="form-check-label"
+          for="flexCheckDefault"
+        >
+        ${filterData.solicitations[i].name}
+        </label>
+      </span>
+      <span class="count"></span>
+    </li>
+      `);
+      document
+        .getElementById(filterData.solicitations[i].id)
+        .addEventListener("change", solicitationSelectClick);
+    }
+  }
 }
 
 function getDocuments() {
