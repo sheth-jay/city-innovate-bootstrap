@@ -1,7 +1,34 @@
+import Quill from "quill";
+
 import Api from "../../utils/axios";
 
 $(document).ready(function () {
   let fileList;
+
+  var toolbarOptions = [
+    ["bold", "italic", "underline", "strike"], // toggled buttons
+    ["blockquote", "code-block"],
+  
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ script: "sub" }, { script: "super" }], // superscript/subscript
+    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+    [{ direction: "rtl" }], // text direction
+  
+    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ font: [] }],
+    [{ align: [] }],
+  
+    ["clean"], // remove formatting button
+  ];
+
+  const editor = new Quill("#description", {
+    modules: { toolbar: toolbarOptions },
+    theme: "snow",
+  });
 
   $("#upload_document").change(function (event) {
     const files = event.target.files;
@@ -14,6 +41,7 @@ $(document).ready(function () {
   $("#createTaskForm").validate({
     submitHandler: function () {
       const formData = new FormData();
+      const html = editor.root.innerHTML;
       $("#labels")
         .val()
         .forEach((element) => {
@@ -34,7 +62,7 @@ $(document).ready(function () {
       });
 
       formData.append("task[title]", $("#title").val());
-      formData.append("task[description]", $("#description").val());
+      formData.append("task[description]", html);
       formData.append("task[due_date]", $("#due_date").val());
 
       Api.post("/tasks", formData, {
@@ -50,5 +78,10 @@ $(document).ready(function () {
           throw error;
         });
     },
+  });
+
+  $(".btn-cancel").click(function () {
+    $(".create-task-drawer").removeClass("drawer-closed");
+    return false;
   });
 });

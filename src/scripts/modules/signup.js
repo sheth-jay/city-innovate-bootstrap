@@ -10,8 +10,8 @@ $(document).ready(function () {
       fileList = {
         file: file,
         imagePreviewUrl: reader.result
-      }
-      $("#avatar").src = fileList.imagePreviewUrl;
+      };
+      $("#avatar").attr('src',fileList.imagePreviewUrl);
     }
     reader.readAsDataURL(file);
   });
