@@ -45,6 +45,7 @@ let sortable = {
 let paginationData = {};
 var editor;
 let taskDetails;
+let drawerUserUpdate = [];
 $(document).ready(function () {
   $("#solicitationButton").click(filterClick);
   $("#labelButton").click(filterClick);
@@ -68,7 +69,6 @@ $(document).ready(function () {
   return editor;
 });
 function doComment() {
-  debugger; // eslint-disable-line no-debugger
   var html = editor.root.innerHTML;
   Api.post(`/tasks/${taskDetails.id}/comments`, {
     comment: { comment: html },
@@ -173,11 +173,11 @@ function getTasks(taskurl = "", page = 1) {
         </span></td>
         <td>
         <span class="table-desc">${
-          response.data[i].title
-        }</span> <span class="new tag">New</span
+  response.data[i].title
+}</span> <span class="new tag">New</span
           ><a href="javascript:void(0);" class="see-detail-link" id="${
-            response.data[i].id
-          }"
+  response.data[i].id
+}"
             >See Details <img src="./../images/arrow.png" alt="arrow"
           /></a>
         </td>
@@ -211,14 +211,57 @@ function getTaskDetails(id) {
       $("#drawerTitle").text(response.data.title);
       taskDetails = response.data;
       let assigneeHtml = "";
-      for (let i = 0; i < response.data.assignees.length; i++) {
-        let firstDiv =
-          i === response.data.assignees.length - 1
-            ? `<div class="add-tag">`
-            : ``;
-        let secondaryDiv =
-          i === response.data.assignees.length - 1
-            ? `                      <div class="dropdown filter-dropdown add-icon">
+      let userList = "";
+      try {
+        for (let i = 0; i < filterData.assignedTos.length; i++) {
+          userList =
+            userList +
+            `<li class="checkbox-item">
+              <span class="form-check">
+                <span class="customChek-container">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="user_${filterData.assignedTos[i].id}"
+                  />
+                  <span class="customChek">
+                    <svg
+                      width="10"
+                      height="8"
+                      viewBox="0 0 10 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                        stroke="white"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span class="checkbox-profile">
+                  <span class="profile-img"
+                    ><img src="${filterData.assignedTos[i].avatar}" alt="user"
+                  /></span>
+                  <span class="profile-text">
+                    <span class="name">${filterData.assignedTos[i].full_name}</span>
+                    <span class="email">${filterData.assignedTos[i].email}</span>
+                  </span>
+                </span>
+              </span>
+              <span class="count">12</span>
+              </li>`;
+        }
+        for (let i = 0; i < response.data.assignees.length; i++) {
+          let firstDiv =
+            i === response.data.assignees.length - 1
+              ? `<div class="add-tag">`
+              : ``;
+          let secondaryDiv =
+            i === response.data.assignees.length - 1
+              ? `<div class="dropdown filter-dropdown add-icon">
           <button
             class="btn btn-secondary dropdown-toggle"
             type="button"
@@ -241,49 +284,10 @@ function getTaskDetails(id) {
                     class="form-control"
                   />
                 </li>
-                <li class="checkbox-item">
-                  <span class="form-check">
-                    <span class="customChek-container">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <span class="customChek">
-                        <svg
-                          width="10"
-                          height="8"
-                          viewBox="0 0 10 8"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
-                            stroke="white"
-                            stroke-width="2"
-                          />
-                        </svg>
-                      </span>
-                    </span>
-                    <span class="checkbox-profile">
-                      <span class="profile-img"
-                        ><img src="./../images/assignee1.png" alt="user"
-                      /></span>
-                      <span class="profile-text">
-                        <span class="name">Britney Spurs</span>
-                        <span class="email">britneyspurs@gmai</span>
-                      </span>
-                    </span>
-                  </span>
-                  <span class="count">12</span>
-                </li>
-              </ul>
-            </li>
-
+              ${userList}
             <li>
               <span class="form-btns">
-                <button class="btn theme-btn" type="button">
+                <button class="btn theme-btn" type="button" id="drawerUserUpdateCall">
                   Save
                 </button>
                 <button
@@ -297,11 +301,11 @@ function getTaskDetails(id) {
           </ul>
         </div>
       </div>`
-            : ``;
+              : ``;
 
-        assigneeHtml =
-          assigneeHtml +
-          `${firstDiv}<div class="delete-opt">
+          assigneeHtml =
+            assigneeHtml +
+            `${firstDiv}<div class="delete-opt">
           <div class="userImg">
             <img src="${response.data.assignees[i]?.avatar}" alt="assignee1" />
           </div>
@@ -311,33 +315,40 @@ function getTaskDetails(id) {
           </a>
         </div>${secondaryDiv}
         `;
-      }
-      $("#drawerassignee").html(assigneeHtml);
-      let date = getFormattedDateAndClass(response.data.due_date);
-      $("#drawerDueDate").html(`<div class="dueDateClass">
+        }
+        $("#drawerassignee").html(assigneeHtml);
+        // setTimeout(() => {
+        for (let j = 0; j < filterData.assignedTos.length; j++) {
+          document
+            .getElementById(`user_${filterData.assignedTos[j].id}`)
+            .addEventListener("change", userSelectionUpdate);
+        }
+        // }, 1000);
+
+        let date = getFormattedDateAndClass(response.data.due_date);
+        $("#drawerDueDate").html(`<div class="dueDateClass">
       <img src="./../images/Calender.svg" /> ${date.dueDate}
        </div>`);
-      let labelSpan = "";
-      for (let i = 0; i < response.data.labels.length; i++) {
-        labelSpan =
-          labelSpan +
-          `<span class="tags">${response.data.labels[i].name}</span>
+        let labelSpan = "";
+        for (let i = 0; i < response.data.labels.length; i++) {
+          labelSpan =
+            labelSpan +
+            `<span class="tags">${response.data.labels[i].name}</span>
         `;
-      }
-      $("#drawerLabel").html(labelSpan);
-      let docName = response.data.documents[0]?.name.split(".")[0].trim();
-      $("#documentName").text(docName || "");
-      $("#drawerDescription").html(response.data?.description || "");
-      $("#drawerStatus").text(
-        response.data?.status === "incompleted" ? "In Progress" : "Completed"
-      );
-      $("#page-loader").hide();
+        }
+        $("#drawerLabel").html(labelSpan);
+        let docName = response.data.documents[0]?.name.split(".")[0].trim();
+        $("#documentName").text(docName || "");
+        $("#drawerDescription").html(response.data?.description || "");
+        $("#drawerStatus").text(
+          response.data?.status === "incompleted" ? "In Progress" : "Completed"
+        );
 
-      let comments = "";
-      for (let i = 0; i < response.data.comments.length; i++) {
-        comments =
-          comments +
-          `<div class="userlist-item">
+        let comments = "";
+        for (let i = 0; i < response.data.comments.length; i++) {
+          comments =
+            comments +
+            `<div class="userlist-item">
             <div class="profile-info">
               <div class="profile-info-img">
                 <img src="${response.data.comments[i]?.commentor_avatar}" />
@@ -349,19 +360,49 @@ function getTaskDetails(id) {
                   ${response.data.comments[i]?.comment}
                 </p>
                 <span>${moment(response.data.comments[i]?.created_at).format(
-                  "LLLL"
-                )}</span>
+    "LLLL"
+  )}</span>
               </div>
             </div>
             </div>`;
+        }
+        $("#commentSection").html(comments);
+      } catch (error) {
+        return error;
       }
-      $("#commentSection").html(comments);
     })
 
     .catch(function () {})
     .then(function () {
       // always executed
+      $("#drawerUserUpdateCall").click(updateTaskCall);
+      $("#page-loader").hide();
     });
+}
+
+function userSelectionUpdate(event) {
+  debugger; // eslint-disable-line no-debugger
+  drawerUserUpdate.push(event.target.id.split("_")[1]);
+}
+
+function updateTaskCall() {
+  try {
+    if (drawerUserUpdate.length === 0) {
+      return;
+    }
+    const formData = new FormData();
+    for (let i = 0; i < drawerUserUpdate.length; i++) {
+      formData.append("task[user_ids][]", drawerUserUpdate[i]);
+    }
+    Api.patch(`/tasks/${taskDetails.id}`, formData)
+      .then(() => {
+        drawerUserUpdate = [];
+        getTaskDetails(taskDetails.id);
+      })
+      .catch(() => {});
+  } catch (error) {
+    return error;
+  }
 }
 
 function seeDetails(event) {
@@ -428,9 +469,9 @@ function getSolicitationList() {
         //   </span>
         //   <span class="count">${i + 1}</span>
         // </li>`);
-        $('#solicitations').append(`
+        $("#solicitations").append(`
           <option value=${response.data[i].id}>${response.data[i].name}</option>
-        `)
+        `);
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", solicitationSelectClick);
@@ -484,9 +525,9 @@ function getLabels() {
         <span class="count">${i + 1}</span>
       </li>
         `);
-      $('#labels').append(`
+        $("#labels").append(`
         <option value=${response.data[i].id}>${response.data[i].name}</option>
-      `)
+      `);
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", labelSelectClick);
@@ -592,9 +633,9 @@ function getUsers() {
         </span>
         <span class="count">12</span>
       </li>`);
-      $('#assignees').append(`
+        $("#assignees").append(`
         <option value=${response.data[i].id}>${response.data[i].full_name}</option>
-      `)
+      `);
         document
           .getElementById(response.data[i].id)
           .addEventListener("change", userSelectClick);

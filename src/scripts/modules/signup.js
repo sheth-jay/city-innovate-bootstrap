@@ -27,18 +27,18 @@ $(document).ready(function () {
       userDetails.append('user[confirm_password]', $('#confirm_password').val());
 
       Api
-      .post('/sign_up', userDetails, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-      .then(function () {
-        window.location.href = "/login.html";
-      })
-      .catch(function (error) {
-        window.location.href = "/login.html";
-        throw error;
-      });
+        .post('/sign_up', userDetails, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(function () {
+          window.location.href = "/login.html";
+        })
+        .catch(function (error) {
+          window.location.href = "/login.html";
+          throw error;
+        });
     },
   });
 });
