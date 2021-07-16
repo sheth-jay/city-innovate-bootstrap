@@ -395,6 +395,8 @@ function getTaskDetails(id) {
   Api.get(`/tasks/${id}`)
     .then(function (response) {
       $("#drawerTitle").text(response.data.title);
+      $("#creator").text(`${response.data.creator} created this task`);
+
       taskDetails = response.data;
       let assigneeHtml = "";
       let userList = "";
@@ -560,6 +562,15 @@ function getTaskDetails(id) {
             </div>`;
         }
         $("#commentSection").html(comments);
+
+        let history = "";
+        for (let k = 0; k < response.data.versions.length; k++) {
+          history = 
+            history + 
+            `<p>${response.data.versions[k].history}</p>`;
+        }
+        $("#task-update-info").html(history);
+
         // $("#markwrapper").addClass("disabled");
         if (response.data.status === "completed") {
           $("#markAsComplete").attr("disabled", true);

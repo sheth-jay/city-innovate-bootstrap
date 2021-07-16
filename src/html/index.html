@@ -39,7 +39,7 @@
                     data-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src="./../images/user-avatar.png" alt="usericon1" id="profile_pic" />
+                    <img src="./../images/user-avatar.png" alt="usericon1" id="profile-pic" />
                   </button>
                   <ul
                     class="dropdown-menu"
@@ -807,18 +807,14 @@
       <div class="drawer-footer">
         <div class="profile-info">
           <div class="profile-info-img">
-            <img src="./../images/list-avtar.png" />
+            <img src="./../images/user-avatar.png" />
           </div>
 
           <div class="profileText">
-            <h2>Jordy Alba created this task <span>9:45 AM Today</span></h2>
+            <h2 id="creator"></h2>
           </div>
         </div>
-        <div class="task-update-info">
-          <p>Mark Ford updated this task, 10:22 AM Tue, 22</p>
-          <p>Mark Ford commented, 9:45 AM Today</p>
-          <p>Task Assigned, 9:45 AM Today</p>
-        </div>
+        <div class="task-update-info" id="task-update-info"></div>
       </div>
     </div>
     <div class="create-task-drawer">
