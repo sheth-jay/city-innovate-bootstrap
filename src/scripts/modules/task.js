@@ -35,7 +35,14 @@ let filterData = {
   labels: [],
   documents: [],
   assignedTos: [],
-  thisWeeks: [],
+  thisWeeks: [
+    "today",
+    "this week",
+    "last week",
+    "next week",
+    "over due",
+    "no due date",
+  ],
 };
 
 let sortable = {
@@ -61,11 +68,13 @@ const hashValues = [
   { id: 3, value: "Fredrik Sundqvist 2" },
   { id: 4, value: "Patrik Sjölin 2" },
 ];
+let allTasks = [];
 $(document).ready(function () {
   $("#solicitationButton").click(filterClick);
   $("#labelButton").click(filterClick);
   $("#assignedButton").click(filterClick);
   $("#documentButton").click(filterClick);
+  $("#getFilterforWeek").click(filterClick);
 
   $("#sort_title").click(sortTable);
   $("#sort_labels").click(sortTable);
@@ -73,6 +82,11 @@ $(document).ready(function () {
   $("#doComment").click(doComment);
   $("#search_query").change(searchQuery);
   $("#markAsComplete").change(markAsComplete);
+  $("#selectAll").change(function (event) {
+    for (let i = 0; i < allTasks.length; i++) {
+      $(`#modify_${allTasks[i].id}`).prop("checked", event.target.checked);
+    }
+  });
   $("#logoutClick").click(function () {
     localStorage.removeItem("token");
     window.location.href = "/login.html";
@@ -83,6 +97,7 @@ $(document).ready(function () {
     getUsers();
     getTasks();
     getDocuments();
+    getTimeFilter();
     editor = new Quill("#editor", {
       modules: {
         toolbar: toolbarOptions,
@@ -125,6 +140,79 @@ $(document).ready(function () {
     }
   }
 });
+
+function getTimeFilter() {
+  filterData.thisWeeks.reverse();
+  for (let i = 0; i < filterData.thisWeeks.length; i++) {
+    $("#initWeeks").after(`
+    <li class="checkbox-item">
+    <span class="form-check">
+      <span class="customChek-container">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="${filterData.thisWeeks[i].replaceAll(" ", "-")}"
+        />
+        <span class="customChek">
+          <svg
+            width="10"
+            height="8"
+            viewBox="0 0 10 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+              stroke="white"
+              stroke-width="2"
+            />
+          </svg>
+        </span>
+      </span>
+      <label
+        class="form-check-label"
+        for="flexCheckDefault"
+      >
+        ${filterData.thisWeeks[i]}
+      </label>
+    </span>
+    <span class="count"></span>
+  </li>
+    `);
+    document
+      .getElementById(filterData.thisWeeks[i].replaceAll(" ", "-"))
+      .addEventListener("change", selectWeekFilter);
+  }
+}
+
+function selectWeekFilter(event) {
+  initFilter.thisWeek.splice(0, 1);
+  initFilter.thisWeek.push(event.target.id);
+  for (let i = 0; i < filterData.thisWeeks.length; i++) {
+    if (event.target.id === filterData.thisWeeks[i].replaceAll(" ", "-")) {
+      $(`#${filterData.thisWeeks[i].replaceAll(" ", "-")}`).prop(
+        "checked",
+        true
+      );
+    } else {
+      $(`#${filterData.thisWeeks[i].replaceAll(" ", "-")}`).prop(
+        "checked",
+        false
+      );
+    }
+  }
+  if (initFilter.thisWeek.length === 0) {
+    $("#thisweekDropdown").removeClass("btn-selected");
+    $("#thisWeekCount")?.remove();
+  } else {
+    $("#thisweekDropdown").addClass("btn-selected");
+    $("#thisWeekCount")?.remove();
+    $("#thisWeekTitle").after(
+      `<span id="thisWeekCount" class="totleCount">${initFilter.thisWeek.length} </span>`
+    );
+  }
+}
 
 function markAsComplete() {
   $("#markAsComplete").attr("disabled", true);
@@ -221,6 +309,7 @@ function getTasks(taskurl = "") {
   Api.get(`/tasks?page=${paginationData.current_page}${taskurl}`)
     .then(function (response) {
       paginationData = response.meta_key;
+      allTasks = response.data;
       response.data.reverse();
       $("#initTable").nextAll().remove();
       $("#page-loader").hide();
@@ -247,7 +336,7 @@ function getTasks(taskurl = "") {
             class="form-check-input"
             type="checkbox"
             value=""
-            id="flexCheckDefault"
+            id="modify_${response.data[i].id}"
           />
           <span class="customChek">
             <svg
@@ -591,7 +680,7 @@ function getSolicitationList() {
           ${response.data[i].name}
           </label>
         </span>
-        <span class="count">${i + 1}</span>
+        <span class="count"></span>
         </li>`);
 
         //   $("#initSolicitation").after(`<li class="checkbox-item">
@@ -664,7 +753,7 @@ function getLabels() {
           ${response.data[i].name}
           </label>
         </span>
-        <span class="count">${i + 1}</span>
+        <span class="count"></span>
       </li>
         `);
         $("#labels").append(`
@@ -719,7 +808,7 @@ function getDocuments() {
           ${response.data[i].name}
           </label>
         </span>
-        <span class="count">${i + 1}</span>
+        <span class="count"></span>
       </li>`);
         document
           .getElementById(response.data[i].id)
@@ -745,7 +834,7 @@ function getUsers() {
               class="form-check-input"
               type="checkbox"
               value=""
-              id="${response.data[i].id}"
+              id="modify-${response.data[i].id}"
             />
             <span class="customChek">
               <svg
@@ -773,7 +862,7 @@ function getUsers() {
             </span>
           </span>
         </span>
-        <span class="count">12</span>
+        <span class="count"></span>
       </li>`);
         $("#assignees").append(`
         <option value=${response.data[i].id}>${response.data[i].full_name}</option>
@@ -873,6 +962,7 @@ function filterClick() {
   let url2 = "";
   let url3 = "";
   let url4 = "";
+  let url5 = "";
 
   if (initFilter.solicitation.length > 0) {
     let constructSolicitation = [];
@@ -914,7 +1004,10 @@ function filterClick() {
     });
     url4 = `&document=${JSON.stringify(constructDocument)}`;
   }
-  let url = url1 + url2 + url3 + url4;
+  if (initFilter.thisWeek.length > 0) {
+    url5 = `&date_filter=${initFilter.thisWeek[0].replaceAll("-", " ")}`;
+  }
+  let url = url1 + url2 + url3 + url4 + url5;
   getTasks(url);
 }
 

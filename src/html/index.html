@@ -261,18 +261,18 @@
                     </ul>
                   </div>
                   <div class="dropdown filter-dropdown">
-                    <!-- <button
+                   <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
-                      id="dropdownMenuButton1"
+                      id="thisweekDropdown"
                       data-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <span class="btn-title">This Week</span>
-                    </button> -->
+                      <span class="btn-title" id="thisWeekTitle">This Week</span>
+                    </button>
                     <ul
                       class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
+                      aria-labelledby="thisweekDropdown"
                     >
                       <li>
                         <ul class="form-ul">
@@ -283,79 +283,14 @@
                               class="form-control"
                             />
                           </li>
-                          <li class="checkbox-item">
-                            <span class="form-check">
-                              <span class="customChek-container">
-                                <input
-                                  class="form-check-input"
-                                  type="checkbox"
-                                  value=""
-                                  id="flexCheckDefault"
-                                />
-                                <span class="customChek">
-                                  <svg
-                                    width="10"
-                                    height="8"
-                                    viewBox="0 0 10 8"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
-                                      stroke="white"
-                                      stroke-width="2"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
-                              <label
-                                class="form-check-label"
-                                for="flexCheckDefault"
-                              >
-                                CDT STP RFO
-                              </label>
-                            </span>
-                            <span class="count">2</span>
-                          </li>
-                          <li class="checkbox-item">
-                            <span class="form-check">
-                              <span class="customChek-container">
-                                <input
-                                  class="form-check-input"
-                                  type="checkbox"
-                                  value=""
-                                  id="flexCheckDefault"
-                                />
-                                <span class="customChek">
-                                  <svg
-                                    width="10"
-                                    height="8"
-                                    viewBox="0 0 10 8"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
-                                      stroke="white"
-                                      stroke-width="2"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
-                              <label
-                                class="form-check-label"
-                                for="flexCheckDefault"
-                              >
-                                Attachment 1: Scope of...
-                              </label>
-                            </span>
-                            <span class="count">5</span>
+                          <li id="initWeeks">
+
                           </li>
                         </ul>
                       </li>
                       <li>
                         <span class="form-btns">
-                          <button class="btn theme-btn" type="button">
+                          <button class="btn theme-btn" type="button" id="getFilterforWeek">
                             See Results
                           </button>
                           <button
@@ -418,7 +353,7 @@
                         class="form-check-input"
                         type="checkbox"
                         value=""
-                        id="flexCheckDefault"
+                        id="selectAll"
                       />
                       <span class="customChek">
                         <svg
