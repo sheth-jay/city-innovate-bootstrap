@@ -479,327 +479,329 @@
       </div>
     </div>
     <div class="see-detail-drawer">
-      <div class="DrawerTop">
-        <div class="drawer_header" id="markwrapper">
-          <label class="headerCheck">
-            <span class="input-wrap">
-              <input type="checkbox" id="markAsComplete"/>
-              <span class="input-check"></span>
-            </span>
-            <span class="btnSpan">Mark Complete</span>
-          </label>
-          <div class="right_header_wrap">
-            <a href=""><img src="./../images/Attachment.png" /></a>
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton7"
-                data-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img src="./../images/Union.png" alt="Union" />
+      <div class="drawer-Contentbox">
+        <div class="DrawerTop">
+          <div class="drawer_header" id="markwrapper">
+            <label class="headerCheck">
+              <span class="input-wrap">
+                <input type="checkbox" id="markAsComplete"/>
+                <span class="input-check"></span>
+              </span>
+              <span class="btnSpan">Mark Complete</span>
+            </label>
+            <div class="right_header_wrap">
+              <a href=""><img src="./../images/Attachment.png" /></a>
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton7"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img src="./../images/Union.png" alt="Union" />
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
+                  <li><a class="dropdown-item" href="#" id="archiveTask">Archive</a></li>
+                  <!-- <li>
+                    <a class="dropdown-item" href="#"
+                      >Allow Guest Contributors to edit</a
+                    >
+                  </li> -->
+                </ul>
+              </div>
+              <button class="close-drawer btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 17L18 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M13 7L18 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 17L12 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 7L12 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
-                <li><a class="dropdown-item" href="#" id="archiveTask">Archive</a></li>
-                <!-- <li>
-                  <a class="dropdown-item" href="#"
-                    >Allow Guest Contributors to edit</a
-                  >
-                </li> -->
-              </ul>
             </div>
-            <button class="close-drawer btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13 17L18 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M13 7L18 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7 17L12 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7 7L12 12" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>                
-            </button>
           </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">RSSIMS Bulk reco...</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                CDT STP FO
+              </li>
+            </ol>
+          </nav>
+          <h2 id="drawerTitle"></h2>
         </div>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">RSSIMS Bulk reco...</a></li>
-            <li class="breadcrumb-item active" aria-current="page">
-              CDT STP FO
-            </li>
-          </ol>
-        </nav>
-        <h2 id="drawerTitle"></h2>
-      </div>
-      <div class="drawer-center">
-        <div class="tabheader">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a
-                class="nav-link active"
-                id="home-tab"
-                data-toggle="tab"
-                href="#home"
-                role="tab"
-                aria-controls="home"
-                aria-selected="true"
-                >Overview <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.41675 8.25033H8.25008" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M6.41675 11.9163H10.0834" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M6.41675 15.5833H14.6667" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M15.588 10.9997C13.0571 10.9997 11.0046 8.94818 11.0046 6.41634C11.0046 3.93768 13.113 1.83026 15.5916 1.83301C18.1216 1.83484 20.1713 3.88634 20.1713 6.41634C20.1713 8.94726 18.1189 10.9997 15.588 10.9997" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M15.5833 6.64551V8.47884" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M15.5871 4.37974C15.5165 4.37974 15.4596 4.43658 15.4606 4.50716C15.4606 4.57774 15.5174 4.63458 15.588 4.63458C15.6586 4.63458 15.7154 4.57774 15.7154 4.50716C15.7145 4.43658 15.6576 4.37974 15.5871 4.37974" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M17.4167 10.6193V17.4163C17.4167 18.4293 16.5963 19.2497 15.5834 19.2497H5.50008C4.48716 19.2497 3.66675 18.4293 3.66675 17.4163V6.41634C3.66675 5.40342 4.48716 4.58301 5.50008 4.58301H11.4043" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  
-              </a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a
-                class="nav-link"
-                id="profile-tab"
-                data-toggle="tab"
-                href="#profile"
-                role="tab"
-                aria-controls="profile"
-                aria-selected="false"
-                >Activity <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.5 8L12.5 15L9 11L3.5 15.5" stroke="#0064FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M15 8H19.5V12.5" stroke="#0064FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-content" id="myTabContent">
-          <div
-            class="tab-pane fade show active"
-            id="home"
-            role="tabpanel"
-            aria-labelledby="home-tab"
-          >
-            <div class="overview-info-wrap">
-              <div class="info">
-                <span class="overview-label">Assignee</span>
-                <div class="info-data">
-                  <div class="assignee-info" id="drawerassignee">
-                    <div class="delete-opt">
-                      <div class="userImg">
-                        <img src="./../images/assignee1.png" alt="assignee1" />
-                      </div>
-                      <span>Mark Ford 1</span>
-                      <a href="" class="crossIcon">
-                        <img src="./../images/circle-close.svg" />
-                      </a>
-                    </div>
-                    <div class="add-tag">
-                      <div class="delete-opt selectedTag">
+        <div class="drawer-center">
+          <div class="tabheader">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >Overview <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.41675 8.25033H8.25008" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.41675 11.9163H10.0834" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.41675 15.5833H14.6667" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.588 10.9997C13.0571 10.9997 11.0046 8.94818 11.0046 6.41634C11.0046 3.93768 13.113 1.83026 15.5916 1.83301C18.1216 1.83484 20.1713 3.88634 20.1713 6.41634C20.1713 8.94726 18.1189 10.9997 15.588 10.9997" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.5833 6.64551V8.47884" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.5871 4.37974C15.5165 4.37974 15.4596 4.43658 15.4606 4.50716C15.4606 4.57774 15.5174 4.63458 15.588 4.63458C15.6586 4.63458 15.7154 4.57774 15.7154 4.50716C15.7145 4.43658 15.6576 4.37974 15.5871 4.37974" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.4167 10.6193V17.4163C17.4167 18.4293 16.5963 19.2497 15.5834 19.2497H5.50008C4.48716 19.2497 3.66675 18.4293 3.66675 17.4163V6.41634C3.66675 5.40342 4.48716 4.58301 5.50008 4.58301H11.4043" stroke="#173851" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                  >Activity <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.5 8L12.5 15L9 11L3.5 15.5" stroke="#0064FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 8H19.5V12.5" stroke="#0064FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="home"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+              <div class="overview-info-wrap">
+                <div class="info">
+                  <span class="overview-label">Assignee</span>
+                  <div class="info-data">
+                    <div class="assignee-info" id="drawerassignee">
+                      <div class="delete-opt">
                         <div class="userImg">
-                          <img
-                            src="./../images/assignee1.png"
-                            alt="assignee1"
-                          />
+                          <img src="./../images/assignee1.png" alt="assignee1" />
                         </div>
-                        <span>Mark Ford 2</span>
+                        <span>Mark Ford 1</span>
                         <a href="" class="crossIcon">
                           <img src="./../images/circle-close.svg" />
                         </a>
                       </div>
-                      
-                      <div class="dropdown filter-dropdown add-icon">
-                        <button
-                          class="btn btn-secondary dropdown-toggle"
-                          type="button"
-                          id="dropdownMenuButton1"
-                          data-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          <img src="./../images/add-icon.svg" alt="add-icon"/>
-                        </button>
-                        <ul
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton1"
-                        >
-                          <li>
-                            <ul class="form-ul">
-                              <li class="searchInput">
-                                <input
-                                  type="text"
-                                  placeholder="Search"
-                                  class="form-control"
-                                />
-                              </li>
-                              <li class="checkbox-item">
-                                <span class="form-check">
-                                  <span class="customChek-container">
-                                    <input
-                                      class="form-check-input"
-                                      type="checkbox"
-                                      value=""
-                                      id="flexCheckDefault"
-                                    />
-                                    <span class="customChek">
-                                      <svg
-                                        width="10"
-                                        height="8"
-                                        viewBox="0 0 10 8"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
-                                          stroke="white"
-                                          stroke-width="2"
-                                        />
-                                      </svg>
+                      <div class="add-tag">
+                        <div class="delete-opt selectedTag">
+                          <div class="userImg">
+                            <img
+                              src="./../images/assignee1.png"
+                              alt="assignee1"
+                            />
+                          </div>
+                          <span>Mark Ford 2</span>
+                          <a href="" class="crossIcon">
+                            <img src="./../images/circle-close.svg" />
+                          </a>
+                        </div>
+                        
+                        <div class="dropdown filter-dropdown add-icon">
+                          <button
+                            class="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton1"
+                            data-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <img src="./../images/add-icon.svg" alt="add-icon"/>
+                          </button>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            <li>
+                              <ul class="form-ul">
+                                <li class="searchInput">
+                                  <input
+                                    type="text"
+                                    placeholder="Search"
+                                    class="form-control"
+                                  />
+                                </li>
+                                <li class="checkbox-item">
+                                  <span class="form-check">
+                                    <span class="customChek-container">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="flexCheckDefault"
+                                      />
+                                      <span class="customChek">
+                                        <svg
+                                          width="10"
+                                          height="8"
+                                          viewBox="0 0 10 8"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M1.21057 3.29835L3.91734 6.10537L8.78952 1.05273"
+                                            stroke="white"
+                                            stroke-width="2"
+                                          />
+                                        </svg>
+                                      </span>
+                                    </span>
+                                    <span class="checkbox-profile">
+                                      <span class="profile-img"
+                                        ><img src="./../images/assignee1.png" alt="user"
+                                      /></span>
+                                      <span class="profile-text">
+                                        <span class="name">Britney Spurs</span>
+                                        <span class="email">britneyspurs@gmai</span>
+                                      </span>
                                     </span>
                                   </span>
-                                  <span class="checkbox-profile">
-                                    <span class="profile-img"
-                                      ><img src="./../images/assignee1.png" alt="user"
-                                    /></span>
-                                    <span class="profile-text">
-                                      <span class="name">Britney Spurs</span>
-                                      <span class="email">britneyspurs@gmai</span>
-                                    </span>
-                                  </span>
-                                </span>
-                                <span class="count">12</span>
-                              </li>
-                            </ul>
-                          </li>
-    
-                          <li>
-                            <span class="form-btns">
-                              <button class="btn theme-btn" type="button">
-                                See Results
-                              </button>
-                              <button
-                                class="btn theme-btn transparent-btn"
-                                type="button"
-                              >
-                                Clear All
-                              </button>
-                            </span>
-                          </li>
-                        </ul>
+                                  <span class="count">12</span>
+                                </li>
+                              </ul>
+                            </li>
+      
+                            <li>
+                              <span class="form-btns">
+                                <button class="btn theme-btn" type="button">
+                                  See Results
+                                </button>
+                                <button
+                                  class="btn theme-btn transparent-btn"
+                                  type="button"
+                                >
+                                  Clear All
+                                </button>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
-                    </div>
-                    <div class="delete-opt">
-                      <div class="userImg">
-                        <img src="./../images/assignee1.png" alt="assignee1" />
+                      <div class="delete-opt">
+                        <div class="userImg">
+                          <img src="./../images/assignee1.png" alt="assignee1" />
+                        </div>
+                        <span>Mark Ford 3</span>
+                        <a href="" class="crossIcon">
+                          <img src="./../images/circle-close.svg" />
+                        </a>
                       </div>
-                      <span>Mark Ford 3</span>
-                      <a href="" class="crossIcon">
-                        <img src="./../images/circle-close.svg" />
-                      </a>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="info">
-                <span class="overview-label">Due date</span>
-                <div id="drawerDueDate">
-                <div class="dueDateClass">
-                  <img src="./../images/Calender.svg" /> Today
+                <div class="info">
+                  <span class="overview-label">Due date</span>
+                  <div id="drawerDueDate">
+                  <div class="dueDateClass">
+                    <img src="./../images/Calender.svg" /> Today
+                  </div>
                 </div>
-              </div>
 
-            </div>
-              <div class="info">
-                <span class="overview-label">Document</span>
-                <div class="info-data">
-                  <span class="section-tags" id="documentName">CDT STP FO</span>
-                </div>
               </div>
-              <div class="info">
-                <span class="overview-label">Section</span>
-                <div class="info-data">
-                  <span class="section-tags">2.0 Legal Assesment</span>
+                <div class="info">
+                  <span class="overview-label">Document</span>
+                  <div class="info-data">
+                    <span class="section-tags" id="documentName">CDT STP FO</span>
+                  </div>
                 </div>
-              </div>
-              <div class="info">
-                <span class="overview-label">Labels</span>
-                <div class="info-data" id="drawerLabel">
-                  <span class="tags">Legal</span>
-                  <span class="tags">ADA</span>
+                <div class="info">
+                  <span class="overview-label">Section</span>
+                  <div class="info-data">
+                    <span class="section-tags">2.0 Legal Assesment</span>
+                  </div>
                 </div>
-              </div>
+                <div class="info">
+                  <span class="overview-label">Labels</span>
+                  <div class="info-data" id="drawerLabel">
+                    <span class="tags">Legal</span>
+                    <span class="tags">ADA</span>
+                  </div>
+                </div>
 
-              <div class="info">
-                <span class="overview-label">Status</span>
-                <div class="info-data">
-                  <span class="status" id="drawerStatus">In Progress</span>
+                <div class="info">
+                  <span class="overview-label">Status</span>
+                  <div class="info-data">
+                    <span class="status" id="drawerStatus">In Progress</span>
+                  </div>
                 </div>
-              </div>
-              <div class="info infotext">
-                <span class="overview-label">Description</span>
-                <div class="info-desc">
-                  <p  id="drawerDescription">
-                  Loading...
-                  </p>
+                <div class="info infotext">
+                  <span class="overview-label">Description</span>
+                  <div class="info-desc">
+                    <p  id="drawerDescription">
+                    Loading...
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="profile"
-            role="tabpanel"
-            aria-labelledby="profile-tab"
-          >
-            <div class="activity-tab">
-              <div class="activity-dropdown">
-                <div class="dropdown">
-                  <button
-                    class="btn btn-secondary btn-none dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton7"
-                    data-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <span class="btn-title">Most Recent</span>
+            <div
+              class="tab-pane fade"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            >
+              <div class="activity-tab">
+                <div class="activity-dropdown">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary btn-none dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton7"
+                      data-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <span class="btn-title">Most Recent</span>
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton7"
+                    >
+                      <li><a class="dropdown-item" href="#">Most Recent</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#">For me</a>
+                        <a class="dropdown-item" href="#">All</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+      
+                <div class="userlist">
+                  <div id="commentSection">
+                    <div class="userlist-item">
+                      <div class="profile-info">
+                        <div class="profile-info-img">
+                          <img src="./../images/list-avtar.png" />
+                        </div>
+    
+                        <div class="profileText">
+                          <p><span>Jessica Lopez</span></p>
+                          <p>
+                            This makes sense for me. What do you think?
+                            <a href="">@jordyalba</a>
+                          </p>
+                          <span>9:45 AM Today</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="startCtivity" id="editor"></div>
+                <!-- <div> -->
+                  <button id="doComment" class="btn theme-btn" type="button" style="float: right; margin-bottom: 10px;">
+                    Comment
                   </button>
-                  <ul
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton7"
-                  >
-                    <li><a class="dropdown-item" href="#">Most Recent</a></li>
-                    <li>
-                      <a class="dropdown-item" href="#">For me</a>
-                      <a class="dropdown-item" href="#">All</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-    
-              <div class="userlist">
-                <div id="commentSection">
-                  <div class="userlist-item">
-                    <div class="profile-info">
-                      <div class="profile-info-img">
-                        <img src="./../images/list-avtar.png" />
-                      </div>
-  
-                      <div class="profileText">
-                        <p><span>Jessica Lopez</span></p>
-                        <p>
-                          This makes sense for me. What do you think?
-                          <a href="">@jordyalba</a>
-                        </p>
-                        <span>9:45 AM Today</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="startCtivity" id="editor"></div>
-              <!-- <div> -->
-                <button id="doComment" class="btn theme-btn" type="button" style="float: right; margin-bottom: 10px;">
-                  Comment
-                </button>
-              <!-- </div> -->
+                <!-- </div> -->
 
+              </div>
             </div>
           </div>
         </div>
@@ -833,8 +835,12 @@
             <input type="text" placeholder="Please Enter Task Title" id="title" required />
           </div>
           <div class="form-item">
-            <label>Description</label>
-            <div class="startCtivity" id="description"></div>
+            <label>AssignedTo</label>
+            <select class="multi-select" multiple="multiple" id="assignees" required></select>
+          </div>
+          <div class="form-item">
+            <label>DueDate</label>
+            <input type="date" placeholder="Please select DueDate!" id="due_date" required>
           </div>
           <div class="form-item">
             <label>Document</label>
@@ -844,20 +850,18 @@
             </div>
           </div>
           <div class="form-item">
-            <label>Solicitation</label>
-            <select class="multi-select" multiple="multiple" id="solicitations" required></select>
-          </div>
-          <div class="form-item">
             <label>Labels</label>
             <select class="multi-select" multiple="multiple" id="labels" required></select>
           </div>
           <div class="form-item">
-            <label>AssignedTo</label>
-            <select class="multi-select" multiple="multiple" id="assignees" required></select>
+            <label>Solicitation</label>
+            <select class="multi-select" multiple="multiple" id="solicitations" required></select>
           </div>
           <div class="form-item">
-            <label>DueDate</label>
-            <input type="date" placeholder="Please select DueDate!" id="due_date" required>
+            <div class="discription-item">
+              <label>Description</label>
+              <div class="startCtivity" id="description"></div>
+            </div>
           </div>
           <div class="form-action">
             <button class="btn" type="submit">Save</button>

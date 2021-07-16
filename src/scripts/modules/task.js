@@ -373,7 +373,7 @@ function getTasks(taskurl = "") {
         ${labels}
         </td>
         <td class="user-images">
-        ${images}
+          <span>${images}</span>
         </td>
         <td class="date ${date.dueDateClass}">${date.dueDate}</td>
       </tr>`);

@@ -52,13 +52,13 @@ html {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
-  background-color: #e5e5e5;
+  background-color: #fafafa;
 }
 body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
-  background-color: #e5e5e5;
+  background-color: #fafafa;
 }
 .content-area {
   max-width: 1440px;
@@ -566,11 +566,20 @@ li.checkbox-item.li-checked {
     }
     td.user-images {
       padding: 0;
-      img {
+      > span {
         height: 25px;
         width: 25px;
-        border-radius: 100%;
+        border-radius: 50%;
+        overflow: hidden;
         margin: 0 2px;
+        display: inline-block;
+        img {
+          width: 100%;
+          object-fit: cover;
+          height: 100%;
+          vertical-align: inherit;
+          object-position: center;
+        }
       }
     }
     td.date {
@@ -601,6 +610,9 @@ li.checkbox-item.li-checked {
   overflow-y: auto;
   transition: all 0.5s ease-in-out;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .breadcrumb {
     padding: 0;
     background: transparent;
@@ -1219,11 +1231,23 @@ span.status {
   .create-task-form {
     display: inline-block;
     width: 100%;
+    margin-top: 10px;
     .form-item {
       margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      @media (max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
       label {
         color: #173851;
         font-size: 14px;
+        min-width: 100px;
+        margin-bottom: 0;
+        @media (max-width: 767px) {
+          margin-bottom: 10px;
+        }
       }
       input,
       textarea,
@@ -1279,6 +1303,11 @@ span.status {
           border: 1px solid #0864ff;
           color: #fff;
           font-size: 12px;
+        }
+      }
+      .discription-item {
+        label {
+          margin-bottom: 10px;
         }
       }
     }
