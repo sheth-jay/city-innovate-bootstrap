@@ -2,6 +2,8 @@ import Api from "../../utils/axios";
 import { getFormattedDateAndClass } from "../../utils/index";
 import moment from "moment";
 import Quill from "quill";
+import "quill-mention";
+
 var toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
   ["blockquote", "code-block"],
@@ -51,6 +53,14 @@ let paginationData = {
 var editor;
 let taskDetails;
 let drawerUserUpdate = [];
+const atValues = [
+  { id: 1, value: "Fredrik Sundqvist" },
+  { id: 2, value: "Patrik Sjölin" },
+];
+const hashValues = [
+  { id: 3, value: "Fredrik Sundqvist 2" },
+  { id: 4, value: "Patrik Sjölin 2" },
+];
 $(document).ready(function () {
   $("#solicitationButton").click(filterClick);
   $("#labelButton").click(filterClick);
@@ -62,18 +72,65 @@ $(document).ready(function () {
   $("#sort_assigness").click(sortTable);
   $("#doComment").click(doComment);
   $("#search_query").change(searchQuery);
+  if (localStorage.getItem("token")) {
+    getSolicitationList();
+    getLabels();
+    getUsers();
+    getTasks();
+    getDocuments();
+    editor = new Quill("#editor", {
+      modules: {
+        toolbar: toolbarOptions,
+        mention: {
+          allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
+          mentionDenotationChars: ["@", "#"],
+          source: function (searchTerm, renderList, mentionChar) {
+            let values;
 
-  getSolicitationList();
-  getLabels();
-  getUsers();
-  getTasks();
-  getDocuments();
-  editor = new Quill("#editor", {
-    modules: { toolbar: toolbarOptions },
-    theme: "snow",
-  });
-  return editor;
+            if (mentionChar === "@") {
+              values = atValues;
+            } else {
+              values = hashValues;
+            }
+
+            if (searchTerm.length === 0) {
+              renderList(values, searchTerm);
+            } else {
+              const matches = [];
+              for (let i = 0; i < values.length; i++)
+                if (
+                  ~values[i].value
+                    .toLowerCase()
+                    .indexOf(searchTerm.toLowerCase())
+                )
+                  matches.push(values[i]);
+              renderList(matches, searchTerm);
+            }
+          },
+        },
+      },
+      theme: "snow",
+    });
+  } else {
+    if (window.location.pathname !== "/login.html") {
+      window.location.href = "/login.html";
+    }
+  }
 });
+
+// async function suggestPeople(searchTerm) {
+//   const allPeople = [
+//     {
+//       id: 1,
+//       value: "Fredrik Sundqvist",
+//     },
+//     {
+//       id: 2,
+//       value: "Patrik Sjölin",
+//     },
+//   ];
+//   return allPeople.filter((person) => person.value.includes(searchTerm));
+// }
 function doComment() {
   var html = editor.root.innerHTML;
   Api.post(`/tasks/${taskDetails.id}/comments`, {
@@ -84,6 +141,8 @@ function doComment() {
       editor.setContents([{ insert: "\n" }]);
     })
     .catch(function (error) {
+      localStorage.removeItem("token");
+      window.location.reload();
       throw error;
     });
   return html;
@@ -225,7 +284,10 @@ function getTasks(taskurl = "") {
           .addEventListener("click", seeDetails);
       }
     })
-    .catch(function () {})
+    .catch(function () {
+      localStorage.removeItem("token");
+      window.location.reload();
+    })
     .then(function () {
       // always executed
     });
