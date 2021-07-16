@@ -42,7 +42,12 @@ let sortable = {
   sort_labels: "asc",
 };
 
-let paginationData = {};
+let paginationData = {
+  current_page: 1,
+  next_page: 2,
+  total_count: 0,
+  total_pages: 0,
+};
 var editor;
 let taskDetails;
 let drawerUserUpdate = [];
@@ -94,7 +99,7 @@ function constructPagination(paginationData) {
   }
   if (paginationArr.length < 3) {
     for (let i = 1; i < 3; i++) {
-      if (paginationArr.length < 3) {
+      if (paginationArr.length < 3 && paginationData.total_pages > 2) {
         paginationArr.unshift(paginationArr[0] - 1);
       }
     }
@@ -114,17 +119,34 @@ function constructPagination(paginationData) {
       .addEventListener("click", changePagination);
   }
   $(`#paginationId`).append(
-    `<li class="page-item"><a class="page-link" href="#">Next</a></li>`
+    `<li class="page-item"><a class="page-link" href="#" id="nextPage">Next</a></li>`
   );
+  $("#previousPage").click(previousPage);
+  $("#nextPage").click(nextPage);
+}
+function nextPage() {
+  if (paginationData.current_page === paginationData.total_pages) {
+    return;
+  }
+  paginationData.current_page = paginationData.current_page + 1;
+  getTasks();
+}
+function previousPage() {
+  if (paginationData.current_page === 1) {
+    return;
+  }
+  paginationData.current_page = paginationData.current_page - 1;
+  getTasks();
 }
 function changePagination(event) {
-  getTasks("", event.target.id.split("_")[1]);
+  paginationData.current_page = event.target.id.split("_")[1];
+  getTasks("");
   return;
 }
 
-function getTasks(taskurl = "", page = 1) {
+function getTasks(taskurl = "") {
   $("#page-loader").show();
-  Api.get(`/tasks?page=${page}${taskurl}`)
+  Api.get(`/tasks?page=${paginationData.current_page}${taskurl}`)
     .then(function (response) {
       paginationData = response.meta_key;
       response.data.reverse();
@@ -173,11 +195,11 @@ function getTasks(taskurl = "", page = 1) {
         </span></td>
         <td>
         <span class="table-desc">${
-  response.data[i].title
-}</span> <span class="new tag">New</span
+          response.data[i].title
+        }</span> <span class="new tag">New</span
           ><a href="javascript:void(0);" class="see-detail-link" id="${
-  response.data[i].id
-}"
+            response.data[i].id
+          }"
             >See Details <img src="./../images/arrow.png" alt="arrow"
           /></a>
         </td>
@@ -310,8 +332,8 @@ function getTaskDetails(id) {
             <img src="${response.data.assignees[i]?.avatar}" alt="assignee1" />
           </div>
           <span>${response.data.assignees[i].full_name}</span>
-          <a href="" class="crossIcon">
-            <img src="./../images/circle-close.svg" />
+          <a  class="crossIcon" >
+            <img src="./../images/circle-close.svg" id="remove_${response.data.assignees[i].id}"/>
           </a>
         </div>${secondaryDiv}
         `;
@@ -323,6 +345,13 @@ function getTaskDetails(id) {
             .getElementById(`user_${filterData.assignedTos[j].id}`)
             .addEventListener("change", userSelectionUpdate);
         }
+
+        for (let j = 0; j < response.data.assignees.length; j++) {
+          document
+            .getElementById(`remove_${response.data.assignees[j].id}`)
+            .addEventListener("click", removeUserSelection);
+        }
+
         // }, 1000);
 
         let date = getFormattedDateAndClass(response.data.due_date);
@@ -360,8 +389,8 @@ function getTaskDetails(id) {
                   ${response.data.comments[i]?.comment}
                 </p>
                 <span>${moment(response.data.comments[i]?.created_at).format(
-    "LLLL"
-  )}</span>
+                  "LLLL"
+                )}</span>
               </div>
             </div>
             </div>`;
@@ -381,11 +410,42 @@ function getTaskDetails(id) {
 }
 
 function userSelectionUpdate(event) {
-  debugger; // eslint-disable-line no-debugger
   drawerUserUpdate.push(event.target.id.split("_")[1]);
+}
+function removeUserSelection(event) {
+  let filteredTaskAssignee = taskDetails.assignees.filter(
+    (e) => e.id !== event.target.id.split("_")[1]
+  );
+  filteredTaskAssignee.forEach((e) => {
+    drawerUserUpdate.push(e.id);
+  });
+  removeCall();
 }
 
 function updateTaskCall() {
+  try {
+    if (drawerUserUpdate.length === 0) {
+      return;
+    }
+    for (let i = 0; i < taskDetails.assignees.length; i++) {
+      drawerUserUpdate.push(taskDetails.assignees[0].id);
+    }
+    const formData = new FormData();
+    for (let i = 0; i < drawerUserUpdate.length; i++) {
+      formData.append("task[user_ids][]", drawerUserUpdate[i]);
+    }
+    Api.patch(`/tasks/${taskDetails.id}`, formData)
+      .then(() => {
+        drawerUserUpdate = [];
+        getTaskDetails(taskDetails.id);
+      })
+      .catch(() => {});
+  } catch (error) {
+    return error;
+  }
+}
+
+function removeCall() {
   try {
     if (drawerUserUpdate.length === 0) {
       return;
