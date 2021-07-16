@@ -54,7 +54,7 @@ Now you have everything you need to run the build process.
 Shorten directories and files structure which you'll see after build: 
 
 ```shell
-html-starter-bs4-webpack/
+city-innovate/
 ├── src/                 # template assets
 │   ├── fonts/              # place template fonts files here
 │   ├── html/               # template HTML files
@@ -92,7 +92,7 @@ html-starter-bs4-webpack/
 ## Demo
 
 Sample of *HTML Starter* usage placed in separate branche:
- * [demo branch](https://github.com/cichy380/html-starter-bs4-webpack/tree/demo) ─ simple corporate website
+ * [demo branch](http://city-inovate.s3-website.ap-south-1.amazonaws.com/) ─ City innovate demo website
 
 ## License
 
