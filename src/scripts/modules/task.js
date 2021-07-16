@@ -61,6 +61,7 @@ $(document).ready(function () {
   $("#sort_labels").click(sortTable);
   $("#sort_assigness").click(sortTable);
   $("#doComment").click(doComment);
+  $("#search_query").change(searchQuery);
 
   getSolicitationList();
   getLabels();
@@ -142,6 +143,10 @@ function changePagination(event) {
   paginationData.current_page = event.target.id.split("_")[1];
   getTasks("");
   return;
+}
+
+function searchQuery(event) {
+  getTasks(`&query=${event.target.value}`);
 }
 
 function getTasks(taskurl = "") {
