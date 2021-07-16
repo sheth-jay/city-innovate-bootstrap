@@ -1,6 +1,4 @@
-<img src="http://marcin.silversite.pl/html-starter-bs4-webpack/logo-small.png" width="150" height="58" alt="">
-
-# HTML Starter
+# Project Starter
 
 [![Bootstrap](https://flat.badgen.net/badge/bootstrap/4.3/7952b3)](https://getbootstrap.com)
 [![Webpack](https://flat.badgen.net/badge/webpack/4/14aaf3)](https://webpack.js.org)
