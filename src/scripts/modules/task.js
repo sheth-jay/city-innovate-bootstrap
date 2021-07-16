@@ -73,6 +73,10 @@ $(document).ready(function () {
   $("#doComment").click(doComment);
   $("#search_query").change(searchQuery);
   $("#markAsComplete").change(markAsComplete);
+  $("#logoutClick").click(function () {
+    localStorage.removeItem("token");
+    window.location.href = "/login.html";
+  });
   if (localStorage.getItem("token")) {
     getSolicitationList();
     getLabels();
