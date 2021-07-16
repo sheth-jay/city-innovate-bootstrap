@@ -70,6 +70,7 @@ const hashValues = [
   { id: 4, value: "Patrik Sjölin 2" },
 ];
 let allTasks = [];
+let assignedQuery = "";
 $(document).ready(function () {
   $("#solicitationButton").click(filterClick);
   $("#labelButton").click(filterClick);
@@ -83,6 +84,13 @@ $(document).ready(function () {
   $("#doComment").click(doComment);
   $("#search_query").change(searchQuery);
   $("#markAsComplete").change(markAsComplete);
+  $("#assignedtoMe")?.click(function () {
+    assignedQuery = "&user_filter=assigned_by";
+  });
+  $("#createdByMe")?.click(function () {
+    assignedQuery = "&user_filter=created_by";
+  });
+
   $("#selectAll").change(function (event) {
     for (let i = 0; i < allTasks.length; i++) {
       $(`#modify_${allTasks[i].id}`).prop("checked", event.target.checked);
@@ -307,31 +315,33 @@ function searchQuery(event) {
 
 function getTasks(taskurl = "") {
   $("#page-loader").show();
-  Api.get(`/tasks?page=${paginationData.current_page}${taskurl}`)
+  Api.get(
+    `/tasks?page=${paginationData.current_page}${taskurl}${assignedQuery}`
+  )
     .then(function (response) {
-      paginationData = response.meta_key;
-      allTasks = response.data;
-      response.data.reverse();
-      $("#initTable").nextAll().remove();
-      $("#page-loader").hide();
-      constructPagination(paginationData);
+      try {
+        paginationData = response.meta_key;
+        allTasks = response.data;
+        response.data.reverse();
+        $("#initTable").nextAll().remove();
+        $("#page-loader").hide();
+        constructPagination(paginationData);
 
-      for (let i = 0; i < response.data.length; i++) {
-        let images = "";
-        for (let j = 0; j < response.data[i].assignees.length; j++) {
-          images =
-            images +
-            `<img src="${response.data[i].assignees[j].avatar}" width="26"/>`;
-        }
-        let labels = "";
-        for (let j = 0; j < response.data[i].labels.length; j++) {
-          labels =
-            labels +
-            `<span class="tag">${response.data[i].labels[j].name}</span>`;
-        }
-        let date = getFormattedDateAndClass(response.data[i].due_date);
+        for (let i = 0; i < response.data.length; i++) {
+          let images = "";
+          for (let j = 0; j < response.data[i].assignees.length; j++) {
+            images = `${images}<span><img id="image${response.data[i].assignees.id}" src="${response.data[i].assignees[j].avatar}" width="26"/></span>`;
+          }
 
-        $("#initTable").after(`<tr>
+          let labels = "";
+          for (let j = 0; j < response.data[i].labels.length; j++) {
+            labels =
+              labels +
+              `<span class="tag">${response.data[i].labels[j].name}</span>`;
+          }
+          let date = getFormattedDateAndClass(response.data[i].due_date);
+
+          $("#initTable").after(`<tr>
         <td><span class="customChek-container">
           <input
             class="form-check-input"
@@ -373,13 +383,16 @@ function getTasks(taskurl = "") {
         ${labels}
         </td>
         <td class="user-images">
-          <span>${images}</span>
+          ${images}
         </td>
         <td class="date ${date.dueDateClass}">${date.dueDate}</td>
       </tr>`);
-        document
-          .getElementById(response.data[i].id)
-          .addEventListener("click", seeDetails);
+          document
+            .getElementById(response.data[i].id)
+            .addEventListener("click", seeDetails);
+        }
+      } catch (error) {
+        return;
       }
     })
     .catch(function () {
@@ -619,6 +632,7 @@ function updateTaskCall() {
       .then(() => {
         drawerUserUpdate = [];
         getTaskDetails(taskDetails.id);
+        getTasks();
       })
       .catch(() => {});
   } catch (error) {
@@ -890,22 +904,23 @@ function getDocuments() {
 function getUsers() {
   Api.get(`/users`)
     .then(function (response) {
-      filterData.assignedTos = response.data;
-      const token = localStorage.getItem("token");
-      const currentUser = response.data.find(
-        (user) => user.auth_token === token
-      );
-      $("#profile_pic").attr("src", currentUser.avatar);
-      response.data.reverse();
-      for (let i = 0; i < response.data.length; i++) {
-        $("#initUsers").after(`<li class="checkbox-item">
+      try {
+        filterData.assignedTos = response.data;
+        const token = localStorage.getItem("token");
+        const currentUser = response.data.find(
+          (user) => user.auth_token === token
+        );
+        $("#profile_pic").attr("src", currentUser.avatar);
+        response.data.reverse();
+        for (let i = 0; i < response.data.length; i++) {
+          $("#initUsers").after(`<li class="checkbox-item">
         <span class="form-check">
           <span class="customChek-container">
             <input
               class="form-check-input"
               type="checkbox"
               value=""
-              id="modify-${response.data[i].id}"
+              id="${response.data[i].id}"
             />
             <span class="customChek">
               <svg
@@ -935,15 +950,20 @@ function getUsers() {
         </span>
         <span class="count"></span>
       </li>`);
-        $("#assignees").append(`
+          document
+            .getElementById(response.data[i].id)
+            .addEventListener("change", userSelectClick);
+          $("#assignees").append(`
         <option value=${response.data[i].id}>${response.data[i].full_name}</option>
       `);
-        document
-          .getElementById(response.data[i].id)
-          .addEventListener("change", userSelectClick);
+        }
+      } catch (err) {
+        return;
       }
     })
-    .catch(function () {})
+    .catch(function () {
+      return;
+    })
     .then(function () {
       // always executed
     });
