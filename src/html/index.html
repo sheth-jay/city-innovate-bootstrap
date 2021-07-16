@@ -545,14 +545,13 @@
     </div>
     <div class="see-detail-drawer">
       <div class="DrawerTop">
-        <div class="drawer_header">
+        <div class="drawer_header" id="markwrapper">
           <label class="headerCheck">
             <span class="input-wrap">
-              <input type="checkbox" />
+              <input type="checkbox" id="markAsComplete"/>
               <span class="input-check"></span>
             </span>
-            <span class="btnSpan">
-              Mark Complete</span>
+            <span class="btnSpan">Mark Complete</span>
           </label>
           <div class="right_header_wrap">
             <a href=""><img src="./../images/Attachment.png" /></a>
@@ -567,12 +566,12 @@
                 <img src="./../images/Union.png" alt="Union" />
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
-                <li><a class="dropdown-item" href="#">Archive</a></li>
-                <li>
+                <li><a class="dropdown-item" href="#" id="archiveTask">Archive</a></li>
+                <!-- <li>
                   <a class="dropdown-item" href="#"
                     >Allow Guest Contributors to edit</a
                   >
-                </li>
+                </li> -->
               </ul>
             </div>
             <button class="close-drawer btn">

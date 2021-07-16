@@ -72,6 +72,7 @@ $(document).ready(function () {
   $("#sort_assigness").click(sortTable);
   $("#doComment").click(doComment);
   $("#search_query").change(searchQuery);
+  $("#markAsComplete").change(markAsComplete);
   if (localStorage.getItem("token")) {
     getSolicitationList();
     getLabels();
@@ -112,25 +113,28 @@ $(document).ready(function () {
       theme: "snow",
     });
   } else {
-    if (window.location.pathname !== "/login.html") {
+    if (
+      window.location.pathname !== "/login.html" &&
+      window.location.pathname !== "/signup.html"
+    ) {
       window.location.href = "/login.html";
     }
   }
 });
 
-// async function suggestPeople(searchTerm) {
-//   const allPeople = [
-//     {
-//       id: 1,
-//       value: "Fredrik Sundqvist",
-//     },
-//     {
-//       id: 2,
-//       value: "Patrik Sjölin",
-//     },
-//   ];
-//   return allPeople.filter((person) => person.value.includes(searchTerm));
-// }
+function markAsComplete() {
+  $("#markAsComplete").attr("disabled", true);
+  Api.patch(`/tasks/${taskDetails.id}/status`, {
+    task: { status: "completed" },
+  })
+    .then(() => {
+      getTaskDetails(taskDetails.id);
+    })
+    .catch((err) => {
+      return err;
+    });
+}
+
 function doComment() {
   var html = editor.root.innerHTML;
   Api.post(`/tasks/${taskDetails.id}/comments`, {
@@ -463,6 +467,13 @@ function getTaskDetails(id) {
             </div>`;
         }
         $("#commentSection").html(comments);
+        // $("#markwrapper").addClass("disabled");
+        if (response.data.status === "completed") {
+          $("#markAsComplete").attr("disabled", true);
+          $("#markAsComplete").prop("checked", true);
+        } else {
+          $("#markAsComplete").attr("disabled", false);
+        }
       } catch (error) {
         return error;
       }
