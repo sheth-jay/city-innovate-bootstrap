@@ -357,11 +357,11 @@ function getTasks(taskurl = "") {
         </span></td>
         <td>
         <span class="table-desc">${
-          response.data[i].title
-        }</span> <span class="new tag">New</span
+  response.data[i].title
+}</span> <span class="new tag">New</span
           ><a href="javascript:void(0);" class="see-detail-link" id="${
-            response.data[i].id
-          }"
+  response.data[i].id
+}"
             >See Details <img src="./../images/arrow.png" alt="arrow"
           /></a>
         </td>
@@ -556,8 +556,8 @@ function getTaskDetails(id) {
                   ${response.data.comments[i]?.comment}
                 </p>
                 <span>${moment(response.data.comments[i]?.created_at).format(
-                  "LLLL"
-                )}</span>
+    "LLLL"
+  )}</span>
               </div>
             </div>
             </div>`;
