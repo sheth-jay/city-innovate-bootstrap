@@ -71,6 +71,10 @@ city-innovate/
 │   │  └── main.scss        # main Sass file that references scss source files
 │   ├── index.js            # entry point of template
 │   └── [...]               # miscellaneous
+|   ├── utils               # Utils will Hold all healper files
+        ├── [...]
+        └── axios.js        # axios and API call helper is there
+        └── config.js       # configuration for all reusable variables
 ├── dist/                   # output folder with production build (don't edit)
 │   ├── css/                # output styles
 │   ├── images/             # output images
