@@ -825,6 +825,9 @@ function getUsers() {
   Api.get(`/users`)
     .then(function (response) {
       filterData.assignedTos = response.data;
+      const token = localStorage.getItem("token");
+      const currentUser = response.data.find(user => user.auth_token === token);
+      $("#profile_pic").attr('src', currentUser.avatar);
       response.data.reverse();
       for (let i = 0; i < response.data.length; i++) {
         $("#initUsers").after(`<li class="checkbox-item">
