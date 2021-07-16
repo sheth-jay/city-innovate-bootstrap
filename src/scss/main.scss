@@ -1165,6 +1165,10 @@ span.status {
   }
 }
 @media (max-width: 425px) {
+  .user-profile-wrap {
+    padding-left: 10px;
+    border-left: none;
+  }
   .searc-input {
     width: 100%;
   }
